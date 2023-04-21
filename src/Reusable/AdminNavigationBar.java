@@ -13,7 +13,6 @@ public class AdminNavigationBar extends JMenuBar {
         home = new JMenu("Home");
         JMenu donor = new JMenu("Donor");
         JMenu receiver = new JMenu("Receiver");
-        JMenu marks = new JMenu("Marks");
         logout = new JMenu("Log Out");
 
 
@@ -30,18 +29,16 @@ public class AdminNavigationBar extends JMenuBar {
         receiver.add(addReceiver);
         receiver.add(viewReceiver);
 
-        this.add(home);
-        this.add(donor);
-        this.add(receiver);
-        this.add(marks);
-        this.add(logout);
+        add(home);
+        add(donor);
+        add(receiver);
+        add(logout);
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setBackground(Color.BLUE);
         home.setForeground(Color.white);
         donor.setForeground(Color.white);
         receiver.setForeground(Color.white);
-        marks.setForeground(Color.white);
         logout.setForeground(Color.white);
         setPreferredSize(new Dimension(screenSize.width,60));
     }

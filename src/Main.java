@@ -61,7 +61,7 @@ public class Main {
         DonorNavigationBar donorNavbar = new DonorNavigationBar();
         ReceiverNavigationBar receiverNavbar = new ReceiverNavigationBar();
 
-        //these are the menu item obtained from the adminavigationbar
+        //these are the menu item obtained from the admin navigationbar
         JMenu ahome = adminNavbar.getHome();
         JMenu alogout = adminNavbar.getLogout();
         JMenuItem aadddonor = adminNavbar.getAddDonor();
@@ -150,6 +150,7 @@ public class Main {
                    name_value = result.getString("Name");
                    username_value=result.getString("Username");
                    password_value=result.getString("Password");
+                   userType_value=result.getString("UserType");
                    bloodGroup_value=result.getString("BloodGroup");
                    email_value=result.getString("Email");
                    contact_value=result.getString("ContactNumber");
@@ -216,12 +217,13 @@ public class Main {
                        frame.getContentPane().repaint();
                        foundMatch = true;
                    }
-                   if(!foundMatch){
-                       login_username.setText("");
-                       login_password.setText("");
-                       JOptionPane.showMessageDialog(frame,"Username or password incorrect","Error Message",JOptionPane.ERROR_MESSAGE);
-                   }
 
+
+               }
+               if(!foundMatch){
+                   login_username.setText("");
+                   login_password.setText("");
+                   JOptionPane.showMessageDialog(frame,"Username or password incorrect","Error Message",JOptionPane.ERROR_MESSAGE);
                }
 
            } catch (SQLException ex) {
@@ -277,6 +279,7 @@ public class Main {
                                 name_value = result.getString("Name");
                                 username_value = result.getString("Username");
                                 password_value = result.getString("Password");
+                                userType_value = result.getString("UserType");
                                 bloodGroup_value = result.getString("BloodGroup");
                                 email_value = result.getString("Email");
                                 contact_value = result.getString("ContactNumber");
@@ -343,12 +346,13 @@ public class Main {
                                     frame.getContentPane().repaint();
                                     foundMatch = true;
                                 }
-                                if (!foundMatch) {
-                                    login_username.setText("");
-                                    login_password.setText("");
-                                    JOptionPane.showMessageDialog(frame, "Username or password incorrect", "Error Message", JOptionPane.ERROR_MESSAGE);
-                                }
 
+
+                            }
+                            if (!foundMatch) {
+                                login_username.setText("");
+                                login_password.setText("");
+                                JOptionPane.showMessageDialog(frame, "Username or password incorrect", "Error Message", JOptionPane.ERROR_MESSAGE);
                             }
 
                         } catch (SQLException ex) {
@@ -397,6 +401,7 @@ public class Main {
 //event on clicking home in the admin section
         ahome.addActionListener(e->{
                 frame.getContentPane().removeAll();
+            System.out.println("hello");
                 frame.getContentPane().add(adminNavbar, BorderLayout.NORTH);
                 frame.getContentPane().add(adminHome, BorderLayout.CENTER);
                 frame.getContentPane().revalidate();

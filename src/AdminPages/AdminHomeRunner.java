@@ -143,9 +143,11 @@ public class AdminHomeRunner extends JPanel {
         return emailDetail;
     }
     public JLabel getBloodGroupDetail(){return bloodGroupDetail;}
-    public JLabel getDiseaseDetail(){return diseaseDetail;}
+    public JLabel getDiseaseDetail(){
+        return  diseaseDetail;
+    }
     public JLabel getAddressDetail(){
-        return diseaseDetail;
+        return addressDetail;
     }
     public JLabel getBloodAmountDetail(){
         return bloodAmountDetail;
