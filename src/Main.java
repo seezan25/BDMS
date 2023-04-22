@@ -20,10 +20,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Objects;
 
 public class Main {
@@ -55,6 +52,18 @@ public class Main {
         RegisterPage registerPage = new RegisterPage();
         login.setBounds(0, 0, 500, 500);
         frame.add(login);
+
+        //importing the contents of the register page
+        JTextField registernameField = registerPage.getNameField();
+        JTextField registeraddressField = registerPage.getAddressField();
+        JTextField registercontatctField = registerPage.getContactField();
+        JTextField registeremailField = registerPage.getEmailField();
+        JButton registersubmitBtn = registerPage.getSubmitButton();
+        JComboBox<String> registerBloodGroupComboBox = registerPage.getBloodGroupComboBox();
+        JComboBox<String> registerUserType = registerPage.getuserType();
+        JCheckBox registerHealthyCheckBox = registerPage.getHealthyCheckBox();
+        JPasswordField registerPasswordField = registerPage.getPasswordField();
+        JPasswordField registerConfirmPasswordField = registerPage.getConfirmPasswordField();
 
         //these are the reusable components
         AdminNavigationBar adminNavbar = new AdminNavigationBar();
@@ -149,7 +158,6 @@ public class Main {
                         frame.getContentPane().repaint();
                         foundMatch = true;
                     }
-
                 }
                 if (!foundMatch) {
                     login_username.setText("");
@@ -165,6 +173,7 @@ public class Main {
         //clicking the reset button in  login panel
         login_resetButton.addActionListener(e -> {
             frame.getContentPane().removeAll();
+            // Add the panel to a scroll pane
             frame.getContentPane().add(registerPage);
             frame.getContentPane().revalidate();
             frame.getContentPane().repaint();
@@ -270,39 +279,101 @@ public class Main {
             }
         });
 
-       clickVolumeofBlood.addMouseListener(new MouseAdapter() {
-           @Override
-           public void mouseClicked(MouseEvent e) {
-               frame.getContentPane().removeAll();
-               frame.getContentPane().add(adminNavbar);
-               frame.getContentPane().add(top);
-               frame.getContentPane().add(adminHome);
-               frame.getContentPane().revalidate();
-               frame.getContentPane().repaint();
-           }
-       });
-       clickBloodRequest.addMouseListener(new MouseAdapter() {
-           @Override
-           public void mouseClicked(MouseEvent e) {
-               frame.getContentPane().removeAll();
-               frame.getContentPane().add(adminNavbar);
-               frame.getContentPane().add(top);
-               frame.getContentPane().add(adminBloodRequest);
-               frame.getContentPane().revalidate();
-               frame.getContentPane().repaint();
-           }
-       });
-       clickDonationRequest.addMouseListener(new MouseAdapter() {
-           @Override
-           public void mouseClicked(MouseEvent e) {
-               frame.getContentPane().removeAll();
-               frame.getContentPane().add(adminNavbar);
-               frame.getContentPane().add(top);
-               frame.getContentPane().add(adminDonationRequest);
-               frame.getContentPane().revalidate();
-               frame.getContentPane().repaint();
-           }
-       });
+        //insert into the database
+        registersubmitBtn.addActionListener(e -> {
+            // Get values from components
+            String name = registernameField.getText();
+            String address = registeraddressField.getText();
+            String contact = registercontatctField.getText();
+            String email = registeremailField.getText();
+            String bloodGroup = (String) registerBloodGroupComboBox.getSelectedItem();
+            String userType = (String) registerUserType.getSelectedItem();
+            boolean healthy = registerHealthyCheckBox.isSelected();
+            String password = new String(registerPasswordField.getPassword());
+            String confirmPassword = new String(registerConfirmPasswordField.getPassword());
+
+            // Validation checks
+            boolean matcher = false;
+            if (name.equals("")) {
+                JOptionPane.showMessageDialog(null, "Please enter your name");
+            } else if (address.equals("")) {
+                JOptionPane.showMessageDialog(null, "Please enter your address");
+            } else if (contact.equals("")) {
+                JOptionPane.showMessageDialog(null, "Please enter your contact number");
+            } else if (bloodGroup.equals("")) {
+                JOptionPane.showMessageDialog(null, "Please enter bloodGroup .");
+            } else if (!healthy) {
+                JOptionPane.showMessageDialog(null,"Health status not selected.");
+            } else if (email.equals("")) {
+                JOptionPane.showMessageDialog(null, "Please enter your email");
+            } else if (password.equals("")) {
+                JOptionPane.showMessageDialog(null, "Please enter your password");
+            } else if (confirmPassword.equals(password) == false) {
+                JOptionPane.showMessageDialog(null, "Passwords do not match");
+            } else{
+                matcher = true;
+            }
+
+            if(matcher) {
+                try {
+                    String sql = "INSERT INTO user(Username,Address,ContactNumber,BloodGroup,Email,Password,UserType) VALUES(?,?,?,?,?,?,?)";
+                    PreparedStatement preparedStatementRegister = conn.prepareStatement(sql);
+                    preparedStatementRegister.setString(1,name);
+                    preparedStatementRegister.setString(2,address);
+                    preparedStatementRegister.setString(3,contact);
+                    preparedStatementRegister.setString(4,bloodGroup);
+                    preparedStatementRegister.setString(5,email);
+                    preparedStatementRegister.setString(6,password);
+                    preparedStatementRegister.setString(7,userType);
+                    int rowsAffected1  = preparedStatementRegister.executeUpdate();
+                    if (rowsAffected1 > 0){
+                    JOptionPane.showMessageDialog(null, "Registration successful");
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Error inserting");
+                    }
+                }catch(SQLException err) {
+                    System.out.println(err);
+//                    JOptionPane.showMessageDialog(null, "Database Error Found");
+                }
+            }
+
+
+
+        });
+
+        clickVolumeofBlood.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                frame.getContentPane().removeAll();
+                frame.getContentPane().add(adminNavbar);
+                frame.getContentPane().add(top);
+                frame.getContentPane().add(adminHome);
+                frame.getContentPane().revalidate();
+                frame.getContentPane().repaint();
+            }
+        });
+        clickBloodRequest.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                frame.getContentPane().removeAll();
+                frame.getContentPane().add(adminNavbar);
+                frame.getContentPane().add(top);
+                frame.getContentPane().add(adminBloodRequest);
+                frame.getContentPane().revalidate();
+                frame.getContentPane().repaint();
+            }
+        });
+        clickDonationRequest.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                frame.getContentPane().removeAll();
+                frame.getContentPane().add(adminNavbar);
+                frame.getContentPane().add(top);
+                frame.getContentPane().add(adminDonationRequest);
+                frame.getContentPane().revalidate();
+                frame.getContentPane().repaint();
+            }
+        });
         clickDetail.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
