@@ -4,152 +4,96 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AdminHomeRunner extends JPanel {
-    JLabel nameDetail, usernameDetail, userTypeDetail, contactDetail, emailDetail,bloodGroupDetail,diseaseDetail,addressDetail,bloodAmountDetail;
     public AdminHomeRunner(){
-        JPanel dashboardPanel=new JPanel();
+        setBounds(270,50,1190,994);
+        setBackground(Color.decode("#8C2121"));
+        setLayout(null);
+        //****************CENTER LABEL********************
+        JLabel centerLabel= new JLabel("Amount Of Blood");
+        centerLabel.setForeground(Color.WHITE);
+        centerLabel.setFont(new Font("",Font.PLAIN,25));
+        centerLabel.setBounds(445,50,528,79);
 
-        JPanel name=new JPanel();
-        JPanel username=new JPanel();
-        JPanel userType=new JPanel();
-        JPanel contact=new JPanel();
-        JPanel email=new JPanel();
-        JLabel bloodGroup = new JLabel();
-        JLabel disease = new JLabel();
-        JPanel address = new JPanel();
-        JPanel bloodAmount = new JPanel();
+        //*************** Blood Amount Panels **********************
+        JPanel AB_plusPanel =new JPanel();                // Panel for AB_Plus
+        JLabel AB_plusLabel=new JLabel("AB+");                            //Label for AB_Plus
+        JLabel label1 =new JLabel("0");
+        AB_plusPanel.setBounds(200,150,100,100);
+//        AB_plusLabel.setBounds(10,10, 40,40);
+//
+        JPanel AB_minusPanel =new JPanel();            // Panel for AB_minus
+        JLabel AB_minusLabel=new JLabel("AB-");                            //Label for AB_minus
+        JLabel label2 =new JLabel("0");
+        AB_minusPanel.setBounds(400,150,100,100);
 
-        JLabel nameDash=new JLabel("Name: " );
-        JLabel usernameDash=new JLabel("Username: ");
-        JLabel userTypeDash=new JLabel("UserType: ");
-        JLabel contactDash=new JLabel("Contact: ");
-        JLabel emailDash=new JLabel("Email: ");
-        JLabel bloodGroupDash = new JLabel("BloodGroup:");
-        JLabel diseaseDash = new JLabel("Disease:");
-        JLabel addressDash = new JLabel("Address:");
-        JLabel bloodAmountDash=new JLabel("Blood Amount:");
+        JPanel A_plusPanel =new JPanel();                // Panel for A_Plus
+        JLabel A_plusLabel=new JLabel("A+");                            //Label for A_Plus
+        JLabel label3 =new JLabel("0");
+        A_plusPanel.setBounds(600,150,100,100);
 
-
-        nameDetail=new JLabel();
-        usernameDetail=new JLabel();
-        userTypeDetail=new JLabel();
-        contactDetail=new JLabel();
-        emailDetail=new JLabel();
-        bloodGroupDetail=new JLabel();
-        diseaseDetail = new JLabel();
-        addressDetail = new JLabel();
-        bloodAmountDetail= new JLabel();
+        JPanel A_minusPanel =new JPanel();                // Panel for A_minus
+        JLabel A_minusLabel=new JLabel("A-");                            //Label for A_minus
+        JLabel label4 =new JLabel("0");
+        A_minusPanel.setBounds(800,150,100,100);
 
 
-        name.setLayout(new FlowLayout());
-        name.add(nameDash);
-        name.add(nameDetail);
-        username.setLayout(new FlowLayout());
-        username.add(usernameDash);
-        username.add(usernameDetail);
-        userType.setLayout(new FlowLayout());
-        userType.add(userTypeDash);
-        userType.add(userTypeDetail);
-        contact.setLayout(new FlowLayout());
-        contact.add(contactDash);
-        contact.add(contactDetail);
-        email.setLayout(new FlowLayout());
-        email.add(emailDash);
-        email.add(emailDetail);
-        bloodGroup.setLayout(new FlowLayout());
-        bloodGroup.add(bloodGroupDash);
-        bloodGroup.add(bloodGroupDetail);
-        disease.setLayout(new FlowLayout());
-        disease.add(diseaseDash);
-        disease.add(diseaseDetail);
-        address.setLayout(new FlowLayout());
-        address.add(addressDash);
-        address.add(addressDetail);
-        bloodAmount.setLayout(new FlowLayout());
-        bloodAmount.add(bloodAmountDash);
-        bloodAmount.add(bloodAmountDetail);
-
-        dashboardPanel.setLayout(new GridLayout(6, 1));
-        dashboardPanel.add(name);
-        dashboardPanel.add(username);
-        dashboardPanel.add(userType);
-        dashboardPanel.add(contact);
-        dashboardPanel.add(email);
-        dashboardPanel.add(bloodGroup);
-        dashboardPanel.add(disease);
-        dashboardPanel.add(address);
-        dashboardPanel.add(bloodAmount);
+        JPanel B_plusPanel =new JPanel();                // Panel for B_Plus
+        JLabel B_plusLabel=new JLabel("B+");                            //Label for B_Plus
+        JLabel label5 =new JLabel("0");
+        B_plusPanel.setBounds(200,350,100,100);
 
 
-// Set preferred size for the dashboardPanel
-        dashboardPanel.setPreferredSize(new Dimension(300, 400));
+        JPanel B_minusPanel =new JPanel();                // Panel for B_minus
+        JLabel B_minusLabel=new JLabel("B-");                            //Label for B_minus
+        JLabel label6 =new JLabel("0");
+        B_minusPanel.setBounds(400,350,100,100);
 
-// Set background color for panels
-        name.setBackground(Color.WHITE);
-        username.setBackground(Color.WHITE);
-        userType.setBackground(Color.WHITE);
-        contact.setBackground(Color.WHITE);
-        email.setBackground(Color.WHITE);
-        bloodGroup.setBackground(Color.WHITE);
-        disease.setBackground(Color.WHITE);
-        address.setBackground(Color.WHITE);
-        bloodAmount.setBackground(Color.WHITE);
-        dashboardPanel.setBackground(Color.WHITE);
 
-// Set font styles for labels
-        Font labelFont = new Font("Arial", Font.BOLD, 16);
-        nameDash.setFont(labelFont);
-        usernameDash.setFont(labelFont);
-        userTypeDash.setFont(labelFont);
-        contactDash.setFont(labelFont);
-        emailDash.setFont(labelFont);
-        bloodGroupDash.setFont(labelFont);
-        diseaseDash.setFont(labelFont);
-        addressDash.setFont(labelFont);
-        bloodAmountDash.setFont(labelFont);
+        JPanel O_plusPanel =new JPanel();                // Panel for O_Plus
+        JLabel O_plusLabel=new JLabel("O+");                            //Label for O_Plus
+        JLabel label7 =new JLabel("0");
+        O_plusPanel.setBounds(600,350,100,100);
 
-// Set font styles for detail labels
-        Font detailFont = new Font("Arial", Font.PLAIN, 16);
-        nameDetail.setFont(detailFont);
-        usernameDetail.setFont(detailFont);
-        userTypeDetail.setFont(detailFont);
-        contactDetail.setFont(detailFont);
-        emailDetail.setFont(detailFont);
-        bloodGroupDetail.setFont(detailFont);
-        diseaseDetail.setFont(detailFont);
-        addressDetail.setFont(detailFont);
-        bloodAmountDetail.setFont(detailFont);
 
-// Add the dashboardPanel to the container
-        this.setBounds(0, 60, 700, 700);
-        this.add(dashboardPanel);
+        JPanel O_minusPanel =new JPanel();                // Panel for O_minus
+        JLabel O_minusLabel=new JLabel("O-");                            //Label for O_minus
+        JLabel label8 =new JLabel("0");
+        O_minusPanel.setBounds(800,350,100,100);
 
-// Set background color of the container to white
-        setBackground(Color.WHITE);
 
-    }
-    public JLabel getNameDetail() {
-        return nameDetail;
-    }
-    public JLabel getUsernameDetail(){
-        return usernameDetail;
-    }
-    public JLabel getUserTypeDetail(){
-        return userTypeDetail;
-    }
-    public JLabel getContactDetail(){
-        return contactDetail;
-    }
-    public JLabel getEmailDetail(){
-        return emailDetail;
-    }
-    public JLabel getBloodGroupDetail(){return bloodGroupDetail;}
-    public JLabel getDiseaseDetail(){
-        return  diseaseDetail;
-    }
-    public JLabel getAddressDetail(){
-        return addressDetail;
-    }
-    public JLabel getBloodAmountDetail(){
-        return bloodAmountDetail;
+        //******************* UPDATE BUTTON**************
+        JButton updateButton =new JButton("Update");
+        updateButton.setBackground(Color.decode("#DBC137"));
+        updateButton.setBounds(500,500,100,50);
+
+        add(centerLabel);
+
+        add(AB_plusPanel);
+        add(AB_minusPanel);
+        add(A_plusPanel);
+        add(A_minusPanel);
+        add(B_plusPanel);
+        add(B_minusPanel);
+        add(O_plusPanel);
+        add(O_minusPanel);
+        add(updateButton);
+        AB_plusPanel.add(AB_plusLabel);
+        AB_minusPanel.add(AB_minusLabel);
+        A_plusPanel.add(A_plusLabel);
+        A_minusPanel.add(A_minusLabel);
+        B_plusPanel.add(B_plusLabel);
+        B_minusPanel.add(B_minusLabel);
+        O_plusPanel.add(O_plusLabel);
+        O_minusPanel.add(O_minusLabel);
+
+        AB_plusPanel.add(label1);
+        AB_minusPanel.add(label2);
+        A_plusPanel.add(label3);
+        A_minusPanel.add(label4);
+        B_plusPanel.add(label5);
+        B_minusPanel.add(label6);
+        O_plusPanel.add(label7);
+        O_minusPanel.add(label8);
+
     }
 }
