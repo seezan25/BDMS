@@ -52,6 +52,7 @@ public class Main {
 
         //login window
         LoginWindow login = new LoginWindow();
+        RegisterPage registerPage = new RegisterPage();
         login.setBounds(0, 0, 500, 500);
         frame.add(login);
 
@@ -163,8 +164,10 @@ public class Main {
 
         //clicking the reset button in  login panel
         login_resetButton.addActionListener(e -> {
-            login_username.setText("");
-            login_password.setText("");
+            frame.getContentPane().removeAll();
+            frame.getContentPane().add(registerPage);
+            frame.getContentPane().revalidate();
+            frame.getContentPane().repaint();
         });
 
 
