@@ -17,7 +17,7 @@ public class LoginWindow extends JPanel {
         passwordfield=new JPasswordField();
         loginButton=new JButton("LOGIN");
 
-        resetButton=new JButton("RESET");
+        resetButton=new JButton("Create User");
 
         img = new ImageIcon("src/images/login_bg.jpg").getImage();
         add(userLabel);

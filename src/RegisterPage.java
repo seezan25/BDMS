@@ -19,18 +19,17 @@ public class RegisterPage extends JPanel {
     private JPasswordField passwordField;
     private JPasswordField confirmPasswordField;
     private JButton submitButton;
+    private Image img1;
 
     public RegisterPage() {
-        JLabel background1;
-
-        ImageIcon img1=new ImageIcon("src/images/register_bg");
 
 
-        background1=new JLabel("", (Icon) img1,JLabel.CENTER);
-        background1.setBounds(0, 0, getWidth(), getHeight());
-        add(background1); // Add the JLabel to the frame
+        img1 = new ImageIcon("src/images/register_bg.jpg").getImage();
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
         // Layout
+        setBounds(0,0,(int)screenSize.getWidth(),(int)screenSize.getHeight());
         setLayout(new GridLayout(13, 2, 10, 10));
 
         // Components initialization
@@ -43,13 +42,7 @@ public class RegisterPage extends JPanel {
         JLabel emailLabel = new JLabel("Email:");
         emailField = new JTextField();
         JLabel bloodGroupLabel = new JLabel("Blood Group:");
-        bloodGroupComboBox = new JComboBox<String>(new String[]{"A", "B", "AB", "O"});
-        JLabel genderLabel = new JLabel("Gender:");
-        maleRadioButton = new JRadioButton("Male");
-        femaleRadioButton = new JRadioButton("Female");
-        ButtonGroup genderButtonGroup = new ButtonGroup();
-        genderButtonGroup.add(maleRadioButton);
-        genderButtonGroup.add(femaleRadioButton);
+        bloodGroupComboBox = new JComboBox<String>(new String[]{"A+","A-","B+","B-", "AB+","AB-", "O+","O-"});
         JLabel healthLabel = new JLabel("Health Status:");
         healthyCheckBox = new JCheckBox("Healthy");
         JLabel passwordLabel = new JLabel("Password:");
@@ -60,6 +53,7 @@ public class RegisterPage extends JPanel {
 
 
         // Add components to the frame
+        setLayout(new GridLayout(10, 2, 10, 10));
         add(nameLabel);
         add(nameField);
         add(addressLabel);
@@ -70,20 +64,22 @@ public class RegisterPage extends JPanel {
         add(emailField);
         add(bloodGroupLabel);
         add(bloodGroupComboBox);
-        add(genderLabel);
-        add(maleRadioButton);
-        add(new JLabel());
-        add(femaleRadioButton);
         add(healthLabel);
         add(healthyCheckBox);
         add(passwordLabel);
         add(passwordField);
         add(confirmPasswordLabel);
         add(confirmPasswordField);
-        add(new JLabel());
         add(submitButton);
-        add(background1);
+//        add(background1);
 
 
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        // Draw the image onto the panel
+        g.drawImage(img1, 0, 0, getWidth(), getHeight(), this);
     }
 }

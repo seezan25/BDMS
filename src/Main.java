@@ -170,7 +170,6 @@ public class Main {
             frame.getContentPane().repaint();
         });
 
-
         //event on entering the enter button in login window
         login_username.addKeyListener(new KeyAdapter() {
             @Override
