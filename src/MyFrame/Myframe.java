@@ -7,5 +7,6 @@ public class Myframe extends JFrame {
         setTitle("Blood Donation Management System");
         setSize(500,500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(null);
     }
 }

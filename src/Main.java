@@ -12,13 +12,12 @@ import ReceiverPages.ReceiverViewReceiverRunner;
 import Reusable.AdminNavigationBar;
 import Reusable.DonorNavigationBar;
 import Reusable.ReceiverNavigationBar;
+import Reusable.TopPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -54,12 +53,15 @@ public class Main {
 
         //login window
         LoginWindow login = new LoginWindow();
+        login.setBounds(0,0,500,500);
         frame.add(login);
 
         //these are the reusable components
         AdminNavigationBar adminNavbar = new AdminNavigationBar();
         DonorNavigationBar donorNavbar = new DonorNavigationBar();
         ReceiverNavigationBar receiverNavbar = new ReceiverNavigationBar();
+        TopPanel top = new TopPanel();
+
 
         //these are the menu item obtained from the admin navigationbar
         JMenu ahome = adminNavbar.getHome();
@@ -130,6 +132,7 @@ public class Main {
         login_loginButton.addActionListener(e -> {
            try{
                String sql="SELECT * FROM user";
+               System.out.println("Hello");
                Statement stmt=conn.createStatement();
                ResultSet result=stmt.executeQuery(sql);
                int id_value=0;
@@ -173,8 +176,9 @@ public class Main {
                        aaddressDetail.setText(address_value);
 
                        frame.getContentPane().removeAll();
-                       frame.getContentPane().add(adminNavbar, BorderLayout.NORTH);
-                       frame.getContentPane().add(adminHome, BorderLayout.CENTER);
+                       frame.getContentPane().add(adminNavbar);
+                       frame.getContentPane().add(top);
+                       frame.getContentPane().add(adminHome);
                        frame.getContentPane().revalidate();
                        frame.getContentPane().repaint();
                        foundMatch = true;
@@ -217,7 +221,6 @@ public class Main {
                        frame.getContentPane().repaint();
                        foundMatch = true;
                    }
-
 
                }
                if(!foundMatch){
@@ -360,134 +363,6 @@ public class Main {
                         }
                     }}
             }
-        });
-
-        //event on clicking add donor in admin section
-        aadddonor.addActionListener(e -> {
-            frame.getContentPane().removeAll();
-            frame.getContentPane().add(adminNavbar, BorderLayout.NORTH);
-            frame.getContentPane().add(adminAddDonor, BorderLayout.CENTER);
-            frame.getContentPane().revalidate();
-            frame.getContentPane().repaint();
-        });
-
-        //event on clicking view donor in admin section
-        aviewdonor.addActionListener(e -> {
-            frame.getContentPane().removeAll();
-            frame.getContentPane().add(adminNavbar, BorderLayout.NORTH);
-            frame.getContentPane().add(adminViewDonor, BorderLayout.CENTER);
-            frame.getContentPane().revalidate();
-            frame.getContentPane().repaint();
-        });
-
-        //event on clicking add receiver in admin section
-        aaddReceiver.addActionListener(e -> {
-            frame.getContentPane().removeAll();
-            frame.getContentPane().add(adminNavbar, BorderLayout.NORTH);
-            frame.getContentPane().add(adminAddReceiver, BorderLayout.CENTER);
-            frame.getContentPane().revalidate();
-            frame.getContentPane().repaint();
-        });
-
-        //event on clicking view receiver in admin section
-        aviewReceiver.addActionListener(e -> {
-            frame.getContentPane().removeAll();
-            frame.getContentPane().add(adminNavbar, BorderLayout.NORTH);
-            frame.getContentPane().add(adminViewReceiver, BorderLayout.CENTER);
-            frame.getContentPane().revalidate();
-            frame.getContentPane().repaint();
-        });
-
-//event on clicking home in the admin section
-        ahome.addActionListener(e->{
-                frame.getContentPane().removeAll();
-            System.out.println("hello");
-                frame.getContentPane().add(adminNavbar, BorderLayout.NORTH);
-                frame.getContentPane().add(adminHome, BorderLayout.CENTER);
-                frame.getContentPane().revalidate();
-                frame.getContentPane().repaint();
-
-        });
-
-        //event on clicking home in the admin section
-        alogout.addActionListener(e->{
-            frame.getContentPane().removeAll();
-            frame.getContentPane().add(login, BorderLayout.CENTER);
-            frame.getContentPane().revalidate();
-            frame.getContentPane().repaint();
-
-        });
-
-        //event on clicking view Donor in donor section
-        dviewDonor.addActionListener(e -> {
-            frame.getContentPane().removeAll();
-            frame.getContentPane().add(donorNavbar, BorderLayout.NORTH);
-            frame.getContentPane().add(donorViewDonor, BorderLayout.CENTER);
-            frame.getContentPane().revalidate();
-            frame.getContentPane().repaint();
-        });
-        //event on clicking view receiver in donor section
-        dviewReceiver.addActionListener(e -> {
-            frame.getContentPane().removeAll();
-            frame.getContentPane().add(donorNavbar, BorderLayout.NORTH);
-            frame.getContentPane().add(donorViewReceiver, BorderLayout.CENTER);
-            frame.getContentPane().revalidate();
-            frame.getContentPane().repaint();
-        });
-        //event on clicking home in the donor section
-        dhome.addActionListener(e->{
-            frame.getContentPane().removeAll();
-            frame.getContentPane().add(donorNavbar, BorderLayout.NORTH);
-            frame.getContentPane().add(donorHome, BorderLayout.CENTER);
-            frame.getContentPane().revalidate();
-            frame.getContentPane().repaint();
-
-        });
-
-        //event on clicking logout in the donor section
-        dlogout.addActionListener(e->{
-            frame.getContentPane().removeAll();
-            frame.getContentPane().add(login, BorderLayout.CENTER);
-            frame.getContentPane().revalidate();
-            frame.getContentPane().repaint();
-
-        });
-
-
-        //event on clicking view Donor in receiver section
-        rviewDonor.addActionListener(e -> {
-            frame.getContentPane().removeAll();
-            frame.getContentPane().add(receiverNavbar, BorderLayout.NORTH);
-            frame.getContentPane().add(receiverViewDonor, BorderLayout.CENTER);
-            frame.getContentPane().revalidate();
-            frame.getContentPane().repaint();
-        });
-        //event on clicking view receiver in receiver section
-        rviewReceiver.addActionListener(e -> {
-            frame.getContentPane().removeAll();
-            frame.getContentPane().add(receiverNavbar, BorderLayout.NORTH);
-            frame.getContentPane().add(receiverViewReceiver, BorderLayout.CENTER);
-            frame.getContentPane().revalidate();
-            frame.getContentPane().repaint();
-        });
-
-        //event on clicking home in the receiver section
-        rhome.addActionListener(e->{
-            frame.getContentPane().removeAll();
-            frame.getContentPane().add(receiverNavbar, BorderLayout.NORTH);
-            frame.getContentPane().add(receiverHome, BorderLayout.CENTER);
-            frame.getContentPane().revalidate();
-            frame.getContentPane().repaint();
-
-        });
-
-        //event on clicking logout in the receiver section
-        rlogout.addActionListener(e->{
-            frame.getContentPane().removeAll();
-            frame.getContentPane().add(login, BorderLayout.CENTER);
-            frame.getContentPane().revalidate();
-            frame.getContentPane().repaint();
-
         });
 
         frame.setVisible(true);
