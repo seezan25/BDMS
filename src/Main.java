@@ -2,13 +2,13 @@ import AdminPages.AdminBloodRequest;
 import AdminPages.AdminDonationRequest;
 import AdminPages.AdminHomeRunner;
 import DBConnect.DoConnection;
-import DonorPages.DonorDonateRunner;
 import DonorPages.DonorHomeRunner;
+import DonorPages.DonorUpdateYourself;
 import DonorPages.DonorViewDonorRunner;
 import DonorPages.DonorViewReceiverRunner;
 import MyFrame.Myframe;
-import ReceiverPages.ReceiverBloodRequestRunner;
 import ReceiverPages.ReceiverHomeRunner;
+import ReceiverPages.ReceiverUpdateYourself;
 import ReceiverPages.ReceiverViewDonorRunner;
 import ReceiverPages.ReceiverViewReceiverRunner;
 import Reusable.AdminNavigationBar;
@@ -18,7 +18,6 @@ import Reusable.TopPanel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -36,16 +35,16 @@ public class Main {
         AdminBloodRequest adminBloodRequest = new AdminBloodRequest();
 
         //Donor Pages
-        DonorDonateRunner donorDonate = new DonorDonateRunner();
         DonorHomeRunner donorHome = new DonorHomeRunner();
         DonorViewReceiverRunner donorViewReceiver = new DonorViewReceiverRunner();
         DonorViewDonorRunner donorViewDonor = new DonorViewDonorRunner();
+        DonorUpdateYourself donorUpdateYourself = new DonorUpdateYourself();
 
         //Receiver Pages
-        ReceiverBloodRequestRunner receiverBloodRequest = new ReceiverBloodRequestRunner();
         ReceiverHomeRunner receiverHome = new ReceiverHomeRunner();
         ReceiverViewDonorRunner receiverViewDonor = new ReceiverViewDonorRunner();
         ReceiverViewReceiverRunner receiverViewReceiver = new ReceiverViewReceiverRunner();
+        ReceiverUpdateYourself receiverUpdateYourself = new ReceiverUpdateYourself();
 
         //login window
         LoginWindow login = new LoginWindow();
@@ -84,12 +83,43 @@ public class Main {
         JLabel clickViewReceiver = donorNavbar.getViewReceiver();
         JLabel clickLogoutDonor = donorNavbar.getLogout();
 
+        //importing the content of receiverNavigation bar for clicking
+        JLabel clickYourDetailsReceiver = receiverNavbar.getYourDetail();
+        JLabel clickViewDonorReceiver = receiverNavbar.getViewDonor();
+        JLabel clickViewReceiverReceiver = receiverNavbar.getViewReceiver();
+        JLabel clickLogoutReceiver = receiverNavbar.getLogout();
 
         //these are the components of login panel
         JTextField login_username = login.getUserTextfield();
         JPasswordField login_password = login.getPasswordfield();
         JButton login_loginButton = login.getLoginButton();
         JButton login_resetButton = login.getResetButton();
+
+        //importing from the donor home
+        JLabel usernameDetailDonor = donorHome.getUsernameDetail();
+        JLabel contactDetailDonor = donorHome.getContactDetail();
+        JLabel emailDetailDonor = donorHome.getEmailDetail();
+        JLabel bloodGroupDetailDonor = donorHome.getBloodGroupDetail();
+        JLabel addressDetailDonor = donorHome.getAddressDetail();
+        JButton editButtonDonor = donorHome.getEditBtn();
+
+        //importing from the donor home
+        JLabel usernameDetailReceiver = receiverHome.getUsernameDetail();
+        JLabel contactDetailReceiver = receiverHome.getContactDetail();
+        JLabel emailDetailReceiver = receiverHome.getEmailDetail();
+        JLabel bloodGroupDetailReceiver = receiverHome.getBloodGroupDetail();
+        JLabel addressDetailReceiver = receiverHome.getAddressDetail();
+        JButton editButtonReceiver = receiverHome.getEditBtn();
+
+        //importing from the donor update yourself
+
+        JButton donorUpdateBackButton = donorUpdateYourself.getBackButton();
+        JButton donorUpdateSaveButton = donorUpdateYourself.getSaveButton();
+
+        //importing from the receiver update yourself
+
+        JButton receiverUpdateBackButton = receiverUpdateYourself.getBackButton();
+        JButton receiverUpdateSaveButton = receiverUpdateYourself.getSaveButton();
 
         //connection component
         DoConnection connect = new DoConnection();
@@ -140,6 +170,94 @@ public class Main {
             throw new RuntimeException(error);
         }
 
+        //importing from the Donor View Receiver
+        DefaultTableModel tableModelDonorViewReceiver = donorViewReceiver.getTableModel();
+        JTable tableDonorViewReceiver = donorViewReceiver.getTable();
+        try {
+            String sqlDonorViewReceiver = "SELECT * FROM receiver";
+            Statement statementDonorViewReceiver = conn.createStatement();
+            ResultSet resultDonorViewReceiver = statementDonorViewReceiver.executeQuery(sqlDonorViewReceiver);
+            while (resultDonorViewReceiver.next()) {
+                String username = resultDonorViewReceiver.getString("username");
+                String email = resultDonorViewReceiver.getString("Email");
+                String bloodGroup = resultDonorViewReceiver.getString("BloodGroup");
+                String contact = resultDonorViewReceiver.getString("Contact");
+                String address = resultDonorViewReceiver.getString("Address");
+                String[] dataOfReceiver = {username, email, bloodGroup, contact, address};
+                tableModelDonorViewReceiver.addRow(dataOfReceiver);
+            }
+            resultDonorViewReceiver.close();
+            statementDonorViewReceiver.close();
+        } catch (SQLException error) {
+            throw new RuntimeException(error);
+        }
+
+        //importing from the Donor View Donor
+        DefaultTableModel tableModelDonorViewDonor = donorViewReceiver.getTableModel();
+        JTable tableDonorViewDonor = donorViewReceiver.getTable();
+        try {
+            String sqlDonorViewDonor = "SELECT * FROM receiver";
+            Statement statementDonorViewDonor = conn.createStatement();
+            ResultSet resultDonorViewDonor = statementDonorViewDonor.executeQuery(sqlDonorViewDonor);
+            while (resultDonorViewDonor.next()) {
+                String username = resultDonorViewDonor.getString("username");
+                String email = resultDonorViewDonor.getString("Email");
+                String bloodGroup = resultDonorViewDonor.getString("BloodGroup");
+                String contact = resultDonorViewDonor.getString("Contact");
+                String address = resultDonorViewDonor.getString("Address");
+                String[] dataOfReceiver = {username, email, bloodGroup, contact, address};
+                tableModelDonorViewDonor.addRow(dataOfReceiver);
+            }
+            resultDonorViewDonor.close();
+            statementDonorViewDonor.close();
+        } catch (SQLException error) {
+            throw new RuntimeException(error);
+        }
+
+        //importing from the Receiver View Receiver
+        DefaultTableModel tableModelReceiverViewReceiver = receiverViewReceiver.getTableModel();
+        JTable tableReceiverViewReceiver = receiverViewReceiver.getTable();
+        try {
+            String sqlReceiverViewReceiver = "SELECT * FROM receiver";
+            Statement statementReceiverViewReceiver = conn.createStatement();
+            ResultSet resultReceiverViewReceiver = statementReceiverViewReceiver.executeQuery(sqlReceiverViewReceiver);
+            while (resultReceiverViewReceiver.next()) {
+                String username = resultReceiverViewReceiver.getString("username");
+                String email = resultReceiverViewReceiver.getString("Email");
+                String bloodGroup = resultReceiverViewReceiver.getString("BloodGroup");
+                String contact = resultReceiverViewReceiver.getString("Contact");
+                String address = resultReceiverViewReceiver.getString("Address");
+                String[] dataOfReceiver = {username, email, bloodGroup, contact, address};
+                tableModelReceiverViewReceiver.addRow(dataOfReceiver);
+            }
+            resultReceiverViewReceiver.close();
+            statementReceiverViewReceiver.close();
+        } catch (SQLException error) {
+            throw new RuntimeException(error);
+        }
+
+        //importing from the Receiver View Donor
+        DefaultTableModel tableModelReceiverViewDonor = receiverViewReceiver.getTableModel();
+        JTable tableReceiverViewDonor = receiverViewReceiver.getTable();
+        try {
+            String sqlReceiverViewDonor = "SELECT * FROM receiver";
+            Statement statementReceiverViewDonor = conn.createStatement();
+            ResultSet resultReceiverViewDonor = statementReceiverViewDonor.executeQuery(sqlReceiverViewDonor);
+            while (resultReceiverViewDonor.next()) {
+                String username = resultReceiverViewDonor.getString("username");
+                String email = resultReceiverViewDonor.getString("Email");
+                String bloodGroup = resultReceiverViewDonor.getString("BloodGroup");
+                String contact = resultReceiverViewDonor.getString("Contact");
+                String address = resultReceiverViewDonor.getString("Address");
+                String[] dataOfReceiver = {username, email, bloodGroup, contact, address};
+                tableModelReceiverViewDonor.addRow(dataOfReceiver);
+            }
+            resultReceiverViewDonor.close();
+            statementReceiverViewDonor.close();
+        } catch (SQLException error) {
+            throw new RuntimeException(error);
+        }
+
 
         //While Clicking on Login Button
         //actionlistener on clicking the login button
@@ -170,7 +288,8 @@ public class Main {
                     String username = login_username.getText();
                     String Password = new String(login_password.getPassword());
                     if (Objects.equals(username_value, username) && Objects.equals(password_value, Password) && Objects.equals(userType_value, "admin")) {
-
+                        login_username.setText("");
+                        login_password.setText("");
                         frame.getContentPane().removeAll();
                         frame.getContentPane().add(adminNavbar);
                         frame.getContentPane().add(top);
@@ -183,9 +302,15 @@ public class Main {
                         login_username.setText("");
                         login_password.setText("");
 
+                        usernameDetailDonor.setText(username_value);
+                        contactDetailDonor.setText(contact_value);
+                        emailDetailDonor.setText(email_value);
+                        bloodGroupDetailDonor.setText(bloodGroup_value);
+                        addressDetailDonor.setText(address_value);
                         frame.getContentPane().removeAll();
-                        frame.getContentPane().add(donorNavbar, BorderLayout.NORTH);
-                        frame.getContentPane().add(donorHome, BorderLayout.CENTER);
+                        frame.getContentPane().add(donorNavbar);
+                        frame.getContentPane().add(top);
+                        frame.getContentPane().add(donorHome);
                         frame.getContentPane().revalidate();
                         frame.getContentPane().repaint();
                         foundMatch = true;
@@ -193,9 +318,15 @@ public class Main {
                     } else if (Objects.equals(username_value, username) && Objects.equals(password_value, Password) && Objects.equals(userType_value, "receiver")) {
                         login_username.setText("");
                         login_password.setText("");
+                        usernameDetailReceiver.setText(username_value);
+                        contactDetailReceiver.setText(contact_value);
+                        emailDetailReceiver.setText(email_value);
+                        bloodGroupDetailReceiver.setText(bloodGroup_value);
+                        addressDetailReceiver.setText(address_value);
                         frame.getContentPane().removeAll();
-                        frame.getContentPane().add(donorNavbar, BorderLayout.NORTH);
-                        frame.getContentPane().add(receiverHome, BorderLayout.CENTER);
+                        frame.getContentPane().add(receiverNavbar);
+                        frame.getContentPane().add(top);
+                        frame.getContentPane().add(receiverHome);
                         frame.getContentPane().revalidate();
                         frame.getContentPane().repaint();
                         foundMatch = true;
@@ -279,6 +410,11 @@ public class Main {
                                 } else if (Objects.equals(username_value, username) && Objects.equals(password_value, Password) && Objects.equals(userType_value, "donor")) {
                                     login_username.setText("");
                                     login_password.setText("");
+                                    usernameDetailDonor.setText(username_value);
+                                    contactDetailDonor.setText(contact_value);
+                                    emailDetailDonor.setText(email_value);
+                                    bloodGroupDetailDonor.setText(bloodGroup_value);
+                                    addressDetailDonor.setText(address_value);
                                     frame.getContentPane().removeAll();
                                     frame.getContentPane().add(donorNavbar);
                                     frame.getContentPane().add(top);
@@ -290,8 +426,14 @@ public class Main {
                                 } else if (Objects.equals(username_value, username) && Objects.equals(password_value, Password) && Objects.equals(userType_value, "receiver")) {
                                     login_username.setText("");
                                     login_password.setText("");
+                                    usernameDetailReceiver.setText(username_value);
+                                    contactDetailReceiver.setText(contact_value);
+                                    emailDetailReceiver.setText(email_value);
+                                    bloodGroupDetailReceiver.setText(bloodGroup_value);
+                                    addressDetailReceiver.setText(address_value);
                                     frame.getContentPane().removeAll();
-                                    frame.getContentPane().add(donorNavbar);
+                                    frame.getContentPane().add(receiverNavbar);
+                                    frame.getContentPane().add(top);
                                     frame.getContentPane().add(receiverHome);
                                     frame.getContentPane().revalidate();
                                     frame.getContentPane().repaint();
@@ -403,6 +545,7 @@ public class Main {
 
         });
 
+        //clicking the admin navigation bar
         clickVolumeofBlood.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -447,34 +590,134 @@ public class Main {
             }
         });
 
+        editButtonDonor.addActionListener(e->{
+            frame.getContentPane().remove(donorHome);
+            frame.getContentPane().add(donorUpdateYourself);
+            frame.getContentPane().revalidate();
+            frame.getContentPane().repaint();
+        });
+        editButtonReceiver.addActionListener(e->{
+            frame.getContentPane().remove(donorHome);
+            frame.getContentPane().add(receiverUpdateYourself);
+            frame.getContentPane().revalidate();
+            frame.getContentPane().repaint();
+        });
+        //clicking the donor navigation bar
         clickYourDetails.addMouseListener(new MouseAdapter() {
                                               @Override
                                               public void mouseClicked(MouseEvent e) {
-
+                                                  frame.getContentPane().removeAll();
+                                                  frame.getContentPane().add(donorNavbar);
+                                                  frame.getContentPane().add(top);
+                                                  frame.getContentPane().add(donorHome);
+                                                  frame.getContentPane().repaint();
+                                                  frame.getContentPane().revalidate();
                                               }
                                           }
         );
         clickViewDonor.addMouseListener(new MouseAdapter() {
-                                              @Override
-                                              public void mouseClicked(MouseEvent e) {
-
-                                              }
-                                          }
+                                            @Override
+                                            public void mouseClicked(MouseEvent e) {
+                                                frame.getContentPane().removeAll();
+                                                frame.getContentPane().add(donorNavbar);
+                                                frame.getContentPane().add(top);
+                                                frame.getContentPane().add(donorViewDonor);
+                                                frame.getContentPane().repaint();
+                                                frame.getContentPane().revalidate();
+                                            }
+                                        }
         );
         clickViewReceiver.addMouseListener(new MouseAdapter() {
+                                               @Override
+                                               public void mouseClicked(MouseEvent e) {
+                                                   frame.getContentPane().removeAll();
+                                                   frame.getContentPane().add(donorNavbar);
+                                                   frame.getContentPane().add(top);
+                                                   frame.getContentPane().add(donorViewReceiver);
+                                                   frame.getContentPane().repaint();
+                                                   frame.getContentPane().revalidate();
+                                               }
+                                           }
+        );
+        clickLogoutDonor.addMouseListener(new MouseAdapter() {
                                               @Override
                                               public void mouseClicked(MouseEvent e) {
-
+                                                  frame.getContentPane().removeAll();
+                                                  frame.getContentPane().add(login);
+                                                  frame.getContentPane().repaint();
+                                                  frame.getContentPane().revalidate();
                                               }
                                           }
         );
-        clickLogout.addMouseListener(new MouseAdapter() {
+
+
+        //clicking the receiver navigation bar
+        clickYourDetailsReceiver.addMouseListener(new MouseAdapter() {
                                               @Override
                                               public void mouseClicked(MouseEvent e) {
-
+                                                  frame.getContentPane().removeAll();
+                                                  frame.getContentPane().add(receiverNavbar);
+                                                  frame.getContentPane().add(top);
+                                                  frame.getContentPane().add(receiverHome);
+                                                  frame.getContentPane().repaint();
+                                                  frame.getContentPane().revalidate();
                                               }
                                           }
         );
+        clickViewReceiverReceiver.addMouseListener(new MouseAdapter() {
+                                            @Override
+                                            public void mouseClicked(MouseEvent e) {
+                                                frame.getContentPane().removeAll();
+                                                frame.getContentPane().add(receiverNavbar);
+                                                frame.getContentPane().add(top);
+                                                frame.getContentPane().add(receiverViewDonor);
+                                                frame.getContentPane().repaint();
+                                                frame.getContentPane().revalidate();
+                                            }
+                                        }
+        );
+        clickViewDonorReceiver.addMouseListener(new MouseAdapter() {
+                                               @Override
+                                               public void mouseClicked(MouseEvent e) {
+                                                   frame.getContentPane().removeAll();
+                                                   frame.getContentPane().add(receiverNavbar);
+                                                   frame.getContentPane().add(top);
+                                                   frame.getContentPane().add(receiverViewReceiver);
+                                                   frame.getContentPane().repaint();
+                                                   frame.getContentPane().revalidate();
+                                               }
+                                           }
+        );
+        clickLogoutReceiver.addMouseListener(new MouseAdapter() {
+                                              @Override
+                                              public void mouseClicked(MouseEvent e) {
+                                                  frame.getContentPane().removeAll();
+                                                  frame.getContentPane().add(login);
+                                                  frame.getContentPane().repaint();
+                                                  frame.getContentPane().revalidate();
+                                              }
+                                          }
+        );
+
+        //update Button in update yourself
+
+        donorUpdateBackButton.addActionListener(e->{
+            frame.getContentPane().removeAll();
+            frame.getContentPane().add(donorNavbar);
+            frame.getContentPane().add(top);
+            frame.getContentPane().add(donorHome);
+            frame.getContentPane().revalidate();
+            frame.getContentPane().repaint();
+        });
+
+        receiverUpdateBackButton.addActionListener(e->{
+            frame.getContentPane().removeAll();
+            frame.getContentPane().add(receiverNavbar);
+            frame.getContentPane().add(top);
+            frame.getContentPane().add(receiverHome);
+            frame.getContentPane().revalidate();
+            frame.getContentPane().revalidate();
+        });
 
         frame.setVisible(true);
     }

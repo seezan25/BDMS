@@ -5,55 +5,62 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ReceiverNavigationBar extends JMenuBar {
-    JMenuItem addDonor, viewDonor, addReceiver, viewReceiver;
-    JMenu home, logout;
+    private JPanel left1,left2,left3,left4;
+    private JLabel yourDetail,viewDonor,viewReceiver,logout;
 
     public ReceiverNavigationBar() {
+        setLayout(null);
+        setBounds(0, 0, 270, 1400);
+        setBackground(Color.decode("#DBC137"));
 
-        home = new JMenu("Home");
-        JMenu donor = new JMenu("Donor");
-        JMenu receiver = new JMenu("Receiver");
-        JMenu marks = new JMenu("Marks");
-        logout = new JMenu("Log Out");
+        // Giant Panel
+        JPanel giantPanel = new JPanel();
+        giantPanel.setBounds(0, 270, 270, 427);
+        giantPanel.setLayout(new GridLayout(6, 1));
+
+        left1 = new JPanel();                          //Left Panel1
+        left1.setSize(270, 20);
+        left1.setBackground(Color.decode("#B4E3AC"));
+        yourDetail = new JLabel("Your Detail");              //volume of blood Label
+        yourDetail.setFont(new Font("", Font.BOLD, 15));
+        left2 = new JPanel();                          //Left Panel2
+        left2.setSize(270, 20);
+        left2.setBackground(Color.decode("#D9D9D9"));
+        viewDonor = new JLabel("View Donor");           //Donation Request Label
+        viewDonor.setFont(new Font("", Font.BOLD, 15));
+        left3 = new JPanel();                          //Left Panel3
+        left3.setSize(270, 20);
+        left3.setBackground(Color.decode("#B4E3AC"));
+        viewReceiver = new JLabel("View Receiver");                  //Blood Request Label
+        viewReceiver.setFont(new Font("", Font.BOLD, 15));
+        left4 = new JPanel();                          //Left Panel4
+        left4.setSize(270, 20);
+        left4.setBackground(Color.decode("#D9D9D9"));
+        logout = new JLabel("Logout");                               //Logout Label
+        logout.setFont(new Font("", Font.BOLD, 15));
 
 
-        viewDonor = new JMenuItem("View Donor");
-
-        viewReceiver = new JMenuItem("View Receiver");
-
-
-        donor.add(viewDonor);
-
-        receiver.add(viewReceiver);
-
-        this.add(home);
-        this.add(donor);
-        this.add(receiver);
-        this.add(marks);
-        this.add(logout);
-
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        setBackground(Color.BLUE);
-        home.setForeground(Color.white);
-        donor.setForeground(Color.white);
-        receiver.setForeground(Color.white);
-        marks.setForeground(Color.white);
-        logout.setForeground(Color.white);
-        setPreferredSize(new Dimension(screenSize.width,60));
+        add(giantPanel);
+        giantPanel.add(left1);
+        giantPanel.add(left2);
+        giantPanel.add(left3);
+        giantPanel.add(left4);
+        left1.add(yourDetail);
+        left2.add(viewDonor);
+        left3.add(viewReceiver);
+        left4.add(logout);
     }
 
-    public JMenuItem getViewDonor() {
+    public JLabel getYourDetail(){
+        return  yourDetail;
+    }
+    public JLabel getViewDonor(){
         return viewDonor;
     }
-
-
-    public JMenuItem getViewReceiver() {
-        return viewReceiver;
+    public JLabel getViewReceiver(){
+        return  viewReceiver;
     }
-    public JMenu getHome(){
-        return home;
-    }
-    public JMenu getLogout(){
+    public JLabel getLogout(){
         return logout;
     }
 }

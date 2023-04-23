@@ -5,6 +5,7 @@ import java.awt.*;
 
 public class DonorHomeRunner extends JPanel {
         JLabel usernameDetail,contactDetail, emailDetail,bloodGroupDetail,addressDetail;
+        JButton editBtn;
         public DonorHomeRunner(){
             JPanel dashboardPanel=new JPanel();
 
@@ -19,6 +20,8 @@ public class DonorHomeRunner extends JPanel {
             JLabel emailDash=new JLabel("Email: ");
             JLabel bloodGroupDash = new JLabel("BloodGroup:");
             JLabel addressDash = new JLabel("Address:");
+
+            editBtn = new JButton("Edit");
 
 
             usernameDetail=new JLabel();
@@ -50,6 +53,7 @@ public class DonorHomeRunner extends JPanel {
             dashboardPanel.add(email);
             dashboardPanel.add(bloodGroup);
             dashboardPanel.add(address);
+            dashboardPanel.add(editBtn);
 
 
 // Set preferred size for the dashboardPanel
@@ -97,6 +101,8 @@ public class DonorHomeRunner extends JPanel {
             return emailDetail;
         }
         public JLabel getBloodGroupDetail(){return bloodGroupDetail;}
+    public JLabel getAddressDetail(){return addressDetail;}
+    public JButton getEditBtn(){return editBtn;}
 
     }
 
