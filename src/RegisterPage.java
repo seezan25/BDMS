@@ -19,7 +19,7 @@ public class RegisterPage extends JPanel {
     private JCheckBox healthyCheckBox;
     private JPasswordField passwordField;
     private JPasswordField confirmPasswordField;
-    private JButton submitButton;
+    private JButton submitButton,backButton;
     private Image img1;
 
     public RegisterPage() {
@@ -35,44 +35,47 @@ public class RegisterPage extends JPanel {
         setLayout(null);
 
         // Components initialization
-        JLabel nameLabel = new JLabel("Name:");
+        JLabel nameLabel = new JLabel("Username:");
         nameField = new JTextField();
-        nameLabel.setBounds(0, 0, 100, 40);
-        nameField.setBounds(110, 0, 100, 40);
+        nameLabel.setBounds(360, 50, 100, 40);
+        nameField.setBounds(460, 50, 100, 40);
         JLabel addressLabel = new JLabel("Address:");
         addressField = new JTextField();
-        addressLabel.setBounds(0, 50, 100, 40);
-        addressField.setBounds(110, 50, 100, 40);
+        addressLabel.setBounds(800, 50, 100, 40);
+        addressField.setBounds(870, 50, 100, 40);
         JLabel contactLabel = new JLabel("Contact Number:");
         contactField = new JTextField();
-        contactLabel.setBounds(0, 100, 100, 40);
-        contactField.setBounds(110, 100, 100, 40);
+        contactLabel.setBounds(360, 100, 100, 40);
+        contactField.setBounds(460, 100, 100, 40);
         JLabel emailLabel = new JLabel("Email:");
         emailField = new JTextField();
-        emailLabel.setBounds(0, 150, 100, 40);
-        emailField.setBounds(110, 150, 100, 40);
+        emailLabel.setBounds(800, 150, 100, 40);
+        emailField.setBounds(870, 150, 100, 40);
         JLabel bloodGroupLabel = new JLabel("Blood Group:");
         bloodGroupComboBox = new JComboBox<String>(new String[]{"A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"});
-        bloodGroupLabel.setBounds(0, 200, 100, 40);
-        bloodGroupComboBox.setBounds(110, 200, 100, 40);
+        bloodGroupLabel.setBounds(360, 200, 100, 40);
+        bloodGroupComboBox.setBounds(460, 200, 100, 40);
         JLabel userTypelabel = new JLabel("userType");
         userType = new JComboBox<String>(new String[]{"donor", "receiver"});
-        userTypelabel.setBounds(0, 250, 100, 40);
-        userType.setBounds(110, 250, 100, 40);
+        userTypelabel.setBounds(800, 250, 100, 40);
+        userType.setBounds(870, 250, 100, 40);
         JLabel healthLabel = new JLabel("Health Status:");
         healthyCheckBox = new JCheckBox("Healthy");
-        healthLabel.setBounds(0, 300, 100, 40);
-        healthyCheckBox.setBounds(110, 300, 100, 40);
+        healthLabel.setBounds(360, 300, 100, 40);
+        healthyCheckBox.setBounds(460, 300, 100, 40);
         JLabel passwordLabel = new JLabel("Password:");
         passwordField = new JPasswordField();
-        passwordLabel.setBounds(0, 350, 100, 40);
-        passwordField.setBounds(110, 350, 100, 40);
+        passwordLabel.setBounds(800, 350, 100, 40);
+        passwordField.setBounds(870, 350, 100, 40);
         JLabel confirmPasswordLabel = new JLabel("Confirm Password:");
         confirmPasswordField = new JPasswordField();
         confirmPasswordLabel.setBounds(0, 400, 100, 40);
         confirmPasswordField.setBounds(110, 400, 100, 40);
         submitButton = new JButton("Submit");
         submitButton.setBounds(0, 450, 100, 40);
+        backButton = new JButton("Back");
+        backButton.setBounds(110,450,100,40);
+
 
 
         // Add components to the frame
@@ -95,6 +98,7 @@ public class RegisterPage extends JPanel {
         add(confirmPasswordLabel);
         add(confirmPasswordField);
         add(submitButton);
+        add(backButton);
 //        add(background1);
 
 
@@ -121,6 +125,9 @@ public class RegisterPage extends JPanel {
 
     public JButton getSubmitButton() {
         return submitButton;
+    }
+    public JButton getBackButton(){
+        return backButton;
     }
 
     public JTextField getEmailField() {

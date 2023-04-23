@@ -2,15 +2,16 @@ import javax.swing.*;
 import java.awt.*;
 
 public class LoginWindow extends JPanel {
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private JLabel userLabel, passwordLabel;
     private JTextField userTextfield;
     private JPasswordField passwordfield;
     private JButton loginButton, resetButton;
-    private Image img;
 
     public LoginWindow(){
+        setBackground(Color.decode("#8C2121"));
         setLayout(null);
-        setBounds(0,0,getWidth(),getHeight());
+        setBounds(0,0,(int)screenSize.getWidth(),(int)screenSize.getHeight());
         userLabel=new JLabel("USERNAME:");
         passwordLabel=new JLabel("PASSWORD:");
         userTextfield=new JTextField();
@@ -19,7 +20,6 @@ public class LoginWindow extends JPanel {
 
         resetButton=new JButton("Create User");
 
-        img = new ImageIcon("src/images/login_bg.jpg").getImage();
         add(userLabel);
         add(passwordLabel);
         add(userTextfield);
@@ -34,12 +34,6 @@ public class LoginWindow extends JPanel {
         passwordfield.setBounds(150,220,150,30);
         loginButton.setBounds(50,300,100,30);
         resetButton.setBounds(200,300,100,30);
-    }
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        // Draw the image onto the panel
-        g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
     }
    public JTextField getUserTextfield(){
         return userTextfield;
