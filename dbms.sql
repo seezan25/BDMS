@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 23, 2023 at 01:38 PM
+-- Generation Time: Apr 24, 2023 at 03:30 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -36,17 +36,6 @@ CREATE TABLE `donor` (
   `BloodGroup` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `donor`
---
-
-INSERT INTO `donor` (`ID`, `username`, `Email`, `Contact`, `Address`, `BloodGroup`) VALUES
-(2, 'asdfadsf', 'asdfasdf', 'asdfadsf', 'asdfasfd', 'A+'),
-(3, 'adsf', 'asddf', 'asdf', 'asdf', 'A+'),
-(4, 'asdf', 'asdf', 'asdf', 'asdf', 'A+'),
-(5, 'asdfdsf', 'sdfgsfdg', 'sdfgsdfg', 'sdfgsdfg', 'A+'),
-(6, 'sfdgsf', 'sdfgsdfg', 'sdfgsdfg', 'sfgf', 'A+');
-
 -- --------------------------------------------------------
 
 --
@@ -61,14 +50,6 @@ CREATE TABLE `receiver` (
   `Address` varchar(100) NOT NULL,
   `BloodGroup` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `receiver`
---
-
-INSERT INTO `receiver` (`ID`, `username`, `Email`, `Contact`, `Address`, `BloodGroup`) VALUES
-(1, 'asdfadf', 'asdfasdf', 'asdfasdf', 'asdfasdf', 'A+'),
-(2, 'asdfasdf', 'asdfasdf', 'asdfasdf', 'asddfasdf', 'A+');
 
 -- --------------------------------------------------------
 
@@ -92,18 +73,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`ID`, `Username`, `Password`, `BloodGroup`, `Email`, `ContactNumber`, `Address`, `UserType`) VALUES
-(1, 'seezan', 'seezan', 'A+', 'seezan@gmail.com', '9876543210', 'damauli', 'admin'),
-(2, 'yuvraj', 'yuvraj', '', 'yuvraj@gmail.com', '9807654321', 'damauli', 'donor'),
-(3, 'receiver', 'receiver', 'AB+', 'receiver@gmail.com', '9870654321', 'damauli', 'receiver'),
-(4, 'asdfadsf', 'asdfasdf', 'A+', 'asdfasdf', 'asdfadsf', 'asdfasfd', 'donor'),
-(5, 'asdfadsf', 'sdfgsg', 'A+', 'asdfsd', 'asdfasdf', 'asdfasdf', 'receiver'),
-(6, 'asdfadf', 'asdfadsfa', 'A+', 'asdfasdf', 'asdfasdf', 'asdfasdf', 'receiver'),
-(7, 'asdfadsfa', 'asdfadsf', 'A+', 'adsfadsfasdfaf', 'asdfasdf', 'asdfadsfadsf', 'donor'),
-(8, 'adsf', 'asdf', 'A+', 'asddf', 'asdf', 'asdf', 'donor'),
-(9, 'asdf', 'asdf', 'A+', 'asdf', 'asdf', 'asdf', 'donor'),
-(10, 'asdfdsf', 'sdfgsf', 'A+', 'sdfgsfdg', 'sdfgsdfg', 'sdfgsdfg', 'donor'),
-(11, 'sfdgsf', 'sdfgsdfg', 'A+', 'sdfgsdfg', 'sdfgsdfg', 'sfgf', 'donor'),
-(12, 'asdfasdf', 'manoj', 'A+', 'asdfasdf', 'asdfasdf', 'asddfasdf', 'receiver');
+(1, 'seezan', 'seezan', 'A+', 'seezan@gmail.com', '9876543210', 'damauli', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -135,7 +105,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `donor`
 --
 ALTER TABLE `donor`
-  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `receiver`
@@ -147,7 +117,7 @@ ALTER TABLE `receiver`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

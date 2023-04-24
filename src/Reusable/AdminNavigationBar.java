@@ -20,7 +20,7 @@ public class AdminNavigationBar extends JMenuBar {
         left1 = new JPanel();                          //Left Panel1
         left1.setSize(270, 20);
         left1.setBackground(Color.decode("#B4E3AC"));
-        volumeOfBlood = new JLabel("Volume OF Blood");              //volume of blood Label
+        volumeOfBlood = new JLabel("Home");              //volume of blood Label
         volumeOfBlood.setFont(new Font("", Font.BOLD, 15));
         left2 = new JPanel();                          //Left Panel2
         left2.setSize(270, 20);

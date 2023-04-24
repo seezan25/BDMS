@@ -103,7 +103,7 @@ public class Main {
         JLabel addressDetailDonor = donorHome.getAddressDetail();
         JButton editButtonDonor = donorHome.getEditBtn();
 
-        //importing from the donor home
+        //importing from the receiver home
         JLabel usernameDetailReceiver = receiverHome.getUsernameDetail();
         JLabel contactDetailReceiver = receiverHome.getContactDetail();
         JLabel emailDetailReceiver = receiverHome.getEmailDetail();
@@ -111,15 +111,27 @@ public class Main {
         JLabel addressDetailReceiver = receiverHome.getAddressDetail();
         JButton editButtonReceiver = receiverHome.getEditBtn();
 
+
         //importing from the donor update yourself
 
-        JButton donorUpdateBackButton = donorUpdateYourself.getBackButton();
+        JLabel donorUsernameField = donorUpdateYourself.getUsernameField();
+        JTextField donorContactField = donorUpdateYourself.getContactField();
+        JTextField donorEmailField = donorUpdateYourself.getEmailField();
+        JTextField donorAddressField = donorUpdateYourself.getAddressField();
+        JComboBox<String> donorBloodGroupField = donorUpdateYourself.getBloodGroup();
+        JButton donorUpdateDeleteButton = donorUpdateYourself.getDeleteButton();
         JButton donorUpdateSaveButton = donorUpdateYourself.getSaveButton();
 
         //importing from the receiver update yourself
 
-        JButton receiverUpdateBackButton = receiverUpdateYourself.getBackButton();
+        JLabel receiverUsernameField = receiverUpdateYourself.getUsernameField();
+        JTextField receiverContactField = receiverUpdateYourself.getContactField();
+        JTextField receiverEmailField = receiverUpdateYourself.getEmailField();
+        JTextField receiverAddressField = receiverUpdateYourself.getAddressField();
+        JComboBox<String> receiverBloodGroupField = receiverUpdateYourself.getCombo();
+        JButton receiverUpdateDeleteButton = receiverUpdateYourself.getDeleteButton();
         JButton receiverUpdateSaveButton = receiverUpdateYourself.getSaveButton();
+
 
         //connection component
         DoConnection connect = new DoConnection();
@@ -302,6 +314,7 @@ public class Main {
                         login_username.setText("");
                         login_password.setText("");
 
+                        System.out.println(username_value);
                         usernameDetailDonor.setText(username_value);
                         contactDetailDonor.setText(contact_value);
                         emailDetailDonor.setText(email_value);
@@ -590,17 +603,95 @@ public class Main {
             }
         });
 
+        //transfering the data from home to update yourself
         editButtonDonor.addActionListener(e->{
-            frame.getContentPane().remove(donorHome);
+           donorUsernameField.setText(usernameDetailDonor.getText());
+            donorEmailField.setText(emailDetailDonor.getText());
+            donorContactField.setText(contactDetailDonor.getText());
+            donorBloodGroupField.setSelectedItem(bloodGroupDetailDonor.getText());
+            donorAddressField.setText(addressDetailDonor.getText());
+            frame.getContentPane().removeAll();
+            frame.getContentPane().add(donorNavbar);
+            frame.getContentPane().add(top);
             frame.getContentPane().add(donorUpdateYourself);
             frame.getContentPane().revalidate();
             frame.getContentPane().repaint();
         });
         editButtonReceiver.addActionListener(e->{
-            frame.getContentPane().remove(donorHome);
+            receiverUsernameField.setText(usernameDetailReceiver.getText());
+            receiverEmailField.setText(emailDetailReceiver.getText());
+            receiverContactField.setText(contactDetailReceiver.getText());
+            receiverBloodGroupField.setSelectedItem(bloodGroupDetailReceiver.getText());
+            receiverAddressField.setText(addressDetailReceiver.getText());
+            frame.getContentPane().removeAll();
+            frame.getContentPane().add(receiverNavbar);
+            frame.getContentPane().add(top);
             frame.getContentPane().add(receiverUpdateYourself);
             frame.getContentPane().revalidate();
             frame.getContentPane().repaint();
+        });
+
+        //updating the data in update yourself panel
+        donorUpdateSaveButton.addActionListener(e->{
+            try{
+                String SQLUpdateDonorUserTableDetail = "UPDATE user SET BloodGroup=?,Email=?,ContactNumber=?,Address=? WHERE Username=? ";
+                PreparedStatement preparedStatementUserTable = conn.prepareStatement(SQLUpdateDonorUserTableDetail);
+                preparedStatementUserTable.setString(1, (String) donorBloodGroupField.getSelectedItem());
+                preparedStatementUserTable.setString(2, donorEmailField.getText());
+                preparedStatementUserTable.setString(3, donorContactField.getText());
+                preparedStatementUserTable.setString(4,donorAddressField.getText());
+                preparedStatementUserTable.setString(5, donorUsernameField.getText());
+                int rowsAffected1 = preparedStatementUserTable.executeUpdate();
+
+                String SQLUpdateDonorTableDetail = "UPDATE donor SET BloodGroup=?,Email=?,Contact=?,Address=? WHERE Username=?";
+                PreparedStatement preparedStatementDonorTable = conn.prepareStatement(SQLUpdateDonorTableDetail);
+                preparedStatementDonorTable.setString(1, (String) donorBloodGroupField.getSelectedItem());
+                preparedStatementDonorTable.setString(2, donorEmailField.getText());
+                preparedStatementDonorTable.setString(3, donorContactField.getText());
+                preparedStatementDonorTable.setString(4,donorAddressField.getText());
+                preparedStatementDonorTable.setString(5, donorUsernameField.getText());
+                int rowsAffected2 = preparedStatementDonorTable.executeUpdate();
+
+                if(rowsAffected1 > 0 && rowsAffected1 > 0){
+                    JOptionPane.showMessageDialog(frame,"Updated Successfully");
+                }else{
+                    JOptionPane.showMessageDialog(frame,"Couldnot Update Successfully");
+                }
+
+            }catch(SQLException error){
+                throw new RuntimeException(error);
+            }
+        });
+
+        receiverUpdateSaveButton.addActionListener(e-> {
+            try {
+                String SQLUpdateReceiverUserTableDetail = "UPDATE user SET BloodGroup=?,Email=?,ContactNumber=?,Address=? WHERE Username=? ";
+                PreparedStatement preparedStatementUserTable = conn.prepareStatement(SQLUpdateReceiverUserTableDetail);
+                preparedStatementUserTable.setString(1, (String) receiverBloodGroupField.getSelectedItem());
+                preparedStatementUserTable.setString(2, receiverEmailField.getText());
+                preparedStatementUserTable.setString(3, receiverContactField.getText());
+                preparedStatementUserTable.setString(4, receiverAddressField.getText());
+                preparedStatementUserTable.setString(5, receiverUsernameField.getText());
+                int rowsAffected1 = preparedStatementUserTable.executeUpdate();
+
+                String SQLUpdateReceiverTableDetail = "UPDATE receiver SET BloodGroup=?,Email=?,Contact=?,Address=? WHERE Username=?";
+                PreparedStatement preparedStatementReceiverTable = conn.prepareStatement(SQLUpdateReceiverTableDetail);
+                preparedStatementReceiverTable.setString(1, (String) receiverBloodGroupField.getSelectedItem());
+                preparedStatementReceiverTable.setString(2, receiverEmailField.getText());
+                preparedStatementReceiverTable.setString(3, receiverContactField.getText());
+                preparedStatementReceiverTable.setString(4, receiverAddressField.getText());
+                preparedStatementReceiverTable.setString(5, receiverUsernameField.getText());
+                int rowsAffected2 = preparedStatementReceiverTable.executeUpdate();
+
+                if(rowsAffected1 > 0 && rowsAffected2 > 0){
+                    JOptionPane.showMessageDialog(frame,"Updated Successfully");
+                }else{
+                    JOptionPane.showMessageDialog(frame,"Couldnot Update Successfully");
+                }
+
+            } catch (SQLException error) {
+                throw new RuntimeException(error);
+            }
         });
         //clicking the donor navigation bar
         clickYourDetails.addMouseListener(new MouseAdapter() {
@@ -699,25 +790,59 @@ public class Main {
                                           }
         );
 
-        //update Button in update yourself
+        //delete Button in update yourself
 
-        donorUpdateBackButton.addActionListener(e->{
-            frame.getContentPane().removeAll();
-            frame.getContentPane().add(donorNavbar);
-            frame.getContentPane().add(top);
-            frame.getContentPane().add(donorHome);
-            frame.getContentPane().revalidate();
-            frame.getContentPane().repaint();
+        donorUpdateDeleteButton.addActionListener(e->{
+            try {
+                String SQLUserTableDelete = "DELETE FROM user WHERE Username =? ";
+                PreparedStatement preparedStatementUserTable = conn.prepareStatement(SQLUserTableDelete);
+                preparedStatementUserTable.setString(1, donorUsernameField.getText());
+                int rowsAffected1 = preparedStatementUserTable.executeUpdate();
+                String SQLDonorTableDelete = "DELETE FROM donor WHERE Username = ?";
+                PreparedStatement preparedStatementDonorTable = conn.prepareStatement(SQLDonorTableDelete);
+                preparedStatementDonorTable.setString(1,donorUsernameField.getText());
+                int rowsAffected2 = preparedStatementDonorTable.executeUpdate();
+                if(rowsAffected1 > 0 && rowsAffected2 > 0){
+                    JOptionPane.showMessageDialog(frame,"Deleted Successfully.");
+                    frame.getContentPane().removeAll();
+                    frame.getContentPane().add(login);
+                    frame.getContentPane().revalidate();
+                    frame.getContentPane().repaint();
+                }
+                else{
+                    JOptionPane.showMessageDialog(frame, "Couldnot Delete Successfully.");
+                }
+            }catch(SQLException error){
+                throw new RuntimeException(error);
+            }
         });
 
-        receiverUpdateBackButton.addActionListener(e->{
-            frame.getContentPane().removeAll();
-            frame.getContentPane().add(receiverNavbar);
-            frame.getContentPane().add(top);
-            frame.getContentPane().add(receiverHome);
-            frame.getContentPane().revalidate();
-            frame.getContentPane().revalidate();
+        receiverUpdateDeleteButton.addActionListener(e->{
+            try {
+                String SQLUserTableDelete = "DELETE FROM user WHERE Username =? ";
+                PreparedStatement preparedStatementUserTable = conn.prepareStatement(SQLUserTableDelete);
+                preparedStatementUserTable.setString(1, receiverUsernameField.getText());
+                int rowsAffected1 = preparedStatementUserTable.executeUpdate();
+                String SQLReceiverTableDelete = "DELETE FROM receiver WHERE Username = ?";
+                PreparedStatement preparedStatementReceiverTable = conn.prepareStatement(SQLReceiverTableDelete);
+                preparedStatementReceiverTable.setString(1,receiverUsernameField.getText());
+                int rowsAffected2 = preparedStatementReceiverTable.executeUpdate();
+                if(rowsAffected1 > 0 && rowsAffected2 > 0){
+                    JOptionPane.showMessageDialog(frame,"Deleted Successfully.");
+                    frame.getContentPane().removeAll();
+                    frame.getContentPane().add(login);
+                    frame.getContentPane().revalidate();
+                    frame.getContentPane().repaint();
+                }
+                else{
+                    JOptionPane.showMessageDialog(frame, "Couldnot Delete Successfully.");
+                }
+            }catch(SQLException error){
+                throw new RuntimeException(error);
+            }
         });
+
+
 
         frame.setVisible(true);
     }

@@ -15,8 +15,8 @@ public class DonorNavigationBar extends JMenuBar {
 
         // Giant Panel
         JPanel giantPanel = new JPanel();
-        giantPanel.setBounds(0, 270, 270, 427);
-        giantPanel.setLayout(new GridLayout(6, 1));
+        giantPanel.setBounds(0, 270, 270, 160);
+        giantPanel.setLayout(new GridLayout(4, 1));
 
         left1 = new JPanel();                          //Left Panel1
         left1.setSize(270, 20);

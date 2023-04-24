@@ -5,9 +5,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ReceiverUpdateYourself extends JPanel {
-    JTextField usernameField,emailField,contactField,addressField;
+    JTextField emailField,contactField,addressField;
+    JLabel usernameField;
     JComboBox<String> combo;
-    JButton saveButton,backButton;
+    JButton saveButton,deleteButton;
     public ReceiverUpdateYourself(){
         setBounds(270,50,1190,994);
         setBackground(Color.decode("#8C2121"));
@@ -25,7 +26,7 @@ public class ReceiverUpdateYourself extends JPanel {
         userName.setBounds(400,200,150,50);
         userName.setForeground(Color.WHITE);
 
-        usernameField=new JTextField();
+        usernameField=new JLabel();
         usernameField.setFont(new Font("",Font.PLAIN,20));
         usernameField.setBounds(580,210,150,30);
 
@@ -61,8 +62,7 @@ public class ReceiverUpdateYourself extends JPanel {
         bloodGroup.setBounds(400,400,150,50);
         bloodGroup.setForeground(Color.WHITE);
 
-        String[] bloodG={"AB+","AB-","A+","A-","B+","B-","O+","O-"};
-        combo=new JComboBox(bloodG);
+        combo=new JComboBox<String>(new String[]{"A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"});
         combo.setBounds(580,410,150,30);
 
         //******************* Save BUTTON**************
@@ -70,9 +70,9 @@ public class ReceiverUpdateYourself extends JPanel {
         saveButton.setBackground(Color.decode("#DBC137"));
         saveButton.setBounds(495,500,100,50);
 
-        backButton = new JButton("Edit");
-        backButton.setBackground(Color.decode("#DBC137"));
-        backButton.setBounds(595,500,100,50);
+        deleteButton = new JButton("Delete");
+        deleteButton.setBackground(Color.decode("#DBC137"));
+        deleteButton.setBounds(595,500,100,50);
 
         add(centerLabel);
         add(userName);
@@ -86,14 +86,14 @@ public class ReceiverUpdateYourself extends JPanel {
         add(bloodGroup);
         add(combo);
         add(saveButton);
-        add(backButton);
+        add(deleteButton);
 
     }
-    public JTextField getUsernameField(){return usernameField;}
+    public JLabel getUsernameField(){return usernameField;}
     public JTextField getEmailField(){return emailField;}
     public JTextField getContactField(){return contactField;}
     public JTextField getAddressField(){return addressField;}
     public JComboBox<String> getCombo(){return combo;}
     public JButton getSaveButton(){return saveButton;}
-    public JButton getBackButton(){return  backButton;}
+    public JButton getDeleteButton(){return  deleteButton;}
 }

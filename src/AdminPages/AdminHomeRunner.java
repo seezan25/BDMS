@@ -9,7 +9,7 @@ public class AdminHomeRunner extends JPanel {
         setBackground(Color.decode("#8C2121"));
         setLayout(null);
         //****************CENTER LABEL********************
-        JLabel centerLabel= new JLabel("Amount Of Blood");
+        JLabel centerLabel= new JLabel("Blood Types");
         centerLabel.setForeground(Color.WHITE);
         centerLabel.setFont(new Font("",Font.PLAIN,25));
         centerLabel.setBounds(445,50,528,79);
@@ -61,10 +61,6 @@ public class AdminHomeRunner extends JPanel {
         O_minusPanel.setBounds(800,350,100,100);
 
 
-        //******************* UPDATE BUTTON**************
-        JButton updateButton =new JButton("Update");
-        updateButton.setBackground(Color.decode("#DBC137"));
-        updateButton.setBounds(500,500,100,50);
 
         add(centerLabel);
 
@@ -76,7 +72,6 @@ public class AdminHomeRunner extends JPanel {
         add(B_minusPanel);
         add(O_plusPanel);
         add(O_minusPanel);
-        add(updateButton);
         AB_plusPanel.add(AB_plusLabel);
         AB_minusPanel.add(AB_minusLabel);
         A_plusPanel.add(A_plusLabel);

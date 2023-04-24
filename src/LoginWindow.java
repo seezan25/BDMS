@@ -20,6 +20,10 @@ public class LoginWindow extends JPanel {
 
         resetButton=new JButton("Create User");
 
+        // set color of user label and passrord label
+        userLabel.setForeground(Color.white);
+        passwordLabel.setForeground(Color.white);
+
         add(userLabel);
         add(passwordLabel);
         add(userTextfield);
@@ -28,19 +32,19 @@ public class LoginWindow extends JPanel {
         add(resetButton);
 
 
-        userLabel.setBounds(60,150,100,30);
-        passwordLabel.setBounds(60,220,100,30);
-        userTextfield.setBounds(150,150,150,30);
-        passwordfield.setBounds(150,220,150,30);
-        loginButton.setBounds(50,300,100,30);
-        resetButton.setBounds(200,300,100,30);
+        userLabel.setBounds(565,220,100,30);
+        passwordLabel.setBounds(565,290,100,30);
+        userTextfield.setBounds(660,220,150,30);
+        passwordfield.setBounds(660,290,150,30);
+        loginButton.setBounds(560,380,120,30);
+        resetButton.setBounds(700,380,120,30);
     }
-   public JTextField getUserTextfield(){
+    public JTextField getUserTextfield(){
         return userTextfield;
-   }
-   public JPasswordField getPasswordfield(){
+    }
+    public JPasswordField getPasswordfield(){
         return passwordfield;
-   }
+    }
 
     public JButton getLoginButton(){
         return loginButton;
