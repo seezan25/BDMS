@@ -533,15 +533,16 @@ public class Main {
                         preparedStatementRegisterReceiver.setString(5, email);
                         rowsAffected2 = preparedStatementRegisterReceiver.executeUpdate();
 
-                        if (rowsAffected1 > 0 && rowsAffected2 > 0) {
-                            JOptionPane.showMessageDialog(null, "Registration successful");
-                            frame.getContentPane().removeAll();
-                            frame.getContentPane().add(login);
-                            frame.getContentPane().revalidate();
-                            frame.getContentPane().repaint();
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Error inserting");
-                        }
+
+                    }
+                    if (rowsAffected1 > 0 && rowsAffected2 > 0) {
+                        JOptionPane.showMessageDialog(null, "Registration successful");
+                        frame.getContentPane().removeAll();
+                        frame.getContentPane().add(login);
+                        frame.getContentPane().revalidate();
+                        frame.getContentPane().repaint();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error inserting");
                     }
                 } catch (SQLException err) {
                     JOptionPane.showMessageDialog(null, "Database Error Found");

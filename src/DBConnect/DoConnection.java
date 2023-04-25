@@ -12,7 +12,7 @@ public class DoConnection {
         this.driver ="com.mysql.cj.jdbc.Driver";
         this.host = "jdbc:mysql://localhost:3306/dbms";
         this.user ="root";
-        this.pass = "admin";
+        this.pass = "";
     }
     public Connection getConnection(){
 
