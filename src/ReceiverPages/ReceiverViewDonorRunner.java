@@ -32,8 +32,7 @@ public class ReceiverViewDonorRunner extends JPanel {
 
         // Add the table to a scroll pane
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setBounds(350,100,400,300);
-//        setLayout(new FlowLayout(FlowLayout.LEADING));
+        scrollPane.setBounds(330,100,450,300);
         add(scrollPane);
     }
     public DefaultTableModel getTableModel(){

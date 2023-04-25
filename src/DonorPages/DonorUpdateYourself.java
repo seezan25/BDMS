@@ -17,62 +17,62 @@ public class DonorUpdateYourself extends JPanel {
         JLabel centerLabel= new JLabel("Edit Your Information");
         centerLabel.setForeground(Color.WHITE);
         centerLabel.setFont(new Font("",Font.BOLD,25));
-        centerLabel.setBounds(445,55,270,30);
+        centerLabel.setBounds(420,50,280,50);
 
         //***********Edit Information Field******************
         JLabel userName=new JLabel("Username");
         userName.setFont(new Font("",Font.PLAIN,20));
-        userName.setBounds(400,105,150,50);
+        userName.setBounds(380,105,150,50);
         userName.setForeground(Color.WHITE);
 
         usernameField=new JLabel();
         usernameField.setFont(new Font("",Font.PLAIN,20));
-        usernameField.setBounds(580,115,150,30);
+        usernameField.setBounds(560,115,150,30);
 
         JLabel email=new JLabel("Email");
         email.setFont(new Font("",Font.PLAIN,20));
-        email.setBounds(400,155,150,50);
+        email.setBounds(380,155,150,50);
         email.setForeground(Color.WHITE);
 
         emailField=new JTextField();
         emailField.setFont(new Font("",Font.PLAIN,20));
-        emailField.setBounds(580,165,150,30);
+        emailField.setBounds(560,165,150,30);
 
         JLabel contact=new JLabel("Contact no");
         contact.setFont(new Font("",Font.PLAIN,20));
-        contact.setBounds(400,205,150,50);
+        contact.setBounds(380,205,150,50);
         contact.setForeground(Color.WHITE);
 
         contactField=new JTextField();
         contactField.setFont(new Font("",Font.PLAIN,20));
-        contactField.setBounds(580,215,150,30);
+        contactField.setBounds(560,215,150,30);
 
         JLabel address=new JLabel("Address");
         address.setFont(new Font("",Font.PLAIN,20));
-        address.setBounds(400,255,150,50);
+        address.setBounds(380,255,150,50);
         address.setForeground(Color.WHITE);
 
         addressField=new JTextField();
         addressField.setFont(new Font("",Font.PLAIN,20));
-        addressField.setBounds(580,265,150,30);
+        addressField.setBounds(560,265,150,30);
 
         JLabel bloodGroup=new JLabel("Blood Group");
         bloodGroup.setFont(new Font("",Font.PLAIN,20));
-        bloodGroup.setBounds(400,305,150,50);
+        bloodGroup.setBounds(380,305,150,50);
         bloodGroup.setForeground(Color.WHITE);
 
         combo=new JComboBox<String>(new String[]{"A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"});
-        combo.setBounds(580,315,150,30);
+        combo.setBounds(560,315,150,30);
 
         //******************* Save BUTTON**************
         saveButton =new JButton("Save");
         saveButton.setBackground(Color.decode("#DBC137"));
-        saveButton.setBounds(445,400,100,50);
+        saveButton.setBounds(415,400,100,50);
 
 
         deleteButton = new JButton("Delete");
         deleteButton.setBackground(Color.decode("#DBC137"));
-        deleteButton.setBounds(595,400,100,50);
+        deleteButton.setBounds(580,400,100,50);
 
         add(centerLabel);
         add(userName);

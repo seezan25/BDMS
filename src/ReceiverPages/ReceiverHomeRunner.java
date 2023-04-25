@@ -101,7 +101,6 @@ public class ReceiverHomeRunner extends JPanel {
         add(centerLabel);
         add(dashboardPanel);
 
-
     }
     public JLabel getUsernameDetail(){
         return usernameDetail;

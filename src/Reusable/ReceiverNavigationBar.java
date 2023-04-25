@@ -26,13 +26,13 @@ public class ReceiverNavigationBar extends JMenuBar {
         left2 = new JPanel();                          //Left Panel2
         left2.setSize(270, 20);
         left2.setBackground(Color.decode("#D9D9D9"));
-        viewDonor = new JLabel("View Donor");           //Donation Request Label
-        viewDonor.setFont(new Font("", Font.BOLD, 15));
+        viewReceiver = new JLabel("View Donor");           //View Receiver Label
+        viewReceiver.setFont(new Font("", Font.BOLD, 15));
         left3 = new JPanel();                          //Left Panel3
         left3.setSize(270, 20);
         left3.setBackground(Color.decode("#B4E3AC"));
-        viewReceiver = new JLabel("View Receiver");                  //Blood Request Label
-        viewReceiver.setFont(new Font("", Font.BOLD, 15));
+        viewDonor = new JLabel("View Receiver");                  //View Donor Label
+        viewDonor.setFont(new Font("", Font.BOLD, 15));
         left4 = new JPanel();                          //Left Panel4
         left4.setSize(270, 20);
         left4.setBackground(Color.decode("#D9D9D9"));

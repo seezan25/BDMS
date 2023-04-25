@@ -7,6 +7,17 @@ public class DonorHomeRunner extends JPanel {
         JLabel usernameDetail,contactDetail, emailDetail,bloodGroupDetail,addressDetail;
         JButton editBtn;
         public DonorHomeRunner(){
+            // Set background color of the container to white
+            setLayout(null);
+            setBackground(Color.decode("#8C2121"));
+            setBounds(260,50,1190,994);
+
+            // Your detail Label
+            JLabel centerLabel= new JLabel("Your Detail");
+            centerLabel.setForeground(Color.WHITE);
+            centerLabel.setFont(new Font("",Font.BOLD,25));
+            centerLabel.setBounds(490,55,270,30);
+
             JPanel dashboardPanel=new JPanel();
 
             JPanel username=new JPanel();
@@ -22,6 +33,7 @@ public class DonorHomeRunner extends JPanel {
             JLabel addressDash = new JLabel("Address:");
 
             editBtn = new JButton("Edit");
+            editBtn.setBackground(Color.decode("#DBC137"));
 
 
             usernameDetail=new JLabel();
@@ -56,16 +68,16 @@ public class DonorHomeRunner extends JPanel {
             dashboardPanel.add(editBtn);
 
 
-// Set preferred size for the dashboardPanel
-            dashboardPanel.setPreferredSize(new Dimension(300, 400));
+// Set Bounds for the dashboardPanel
+            dashboardPanel.setBounds(410,100,300,397);
 
 // Set background color for panels
-            username.setBackground(Color.WHITE);
-            contact.setBackground(Color.WHITE);
-            email.setBackground(Color.WHITE);
-            bloodGroup.setBackground(Color.WHITE);
-            address.setBackground(Color.WHITE);
-            dashboardPanel.setBackground(Color.WHITE);
+            username.setBackground(Color.decode("#D9D9D9"));
+            contact.setBackground(Color.decode("#D9D9D9"));
+            email.setBackground(Color.decode("#D9D9D9"));
+            bloodGroup.setBackground(Color.decode("#D9D9D9"));
+            address.setBackground(Color.decode("#D9D9D9"));
+            dashboardPanel.setBackground(Color.decode("#D9D9D9"));
 
 // Set font styles for labels
             Font labelFont = new Font("Arial", Font.BOLD, 16);
@@ -83,12 +95,11 @@ public class DonorHomeRunner extends JPanel {
             bloodGroupDetail.setFont(detailFont);
             addressDetail.setFont(detailFont);
 
-// Add the dashboardPanel to the container
-            setBounds(0, 60, 700, 700);
+// Add center label and  dashboardPanel to the container
+            add(centerLabel);
             add(dashboardPanel);
 
-// Set background color of the container to white
-            setBackground(Color.WHITE);
+
 
         }
         public JLabel getUsernameDetail(){

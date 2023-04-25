@@ -17,7 +17,7 @@ public class DonorViewReceiverRunner extends JPanel {
         JLabel centerLabel= new JLabel("Receiver Information");
         centerLabel.setForeground(Color.WHITE);
         centerLabel.setFont(new Font("",Font.BOLD,25));
-        centerLabel.setBounds(425,55,270,30);
+        centerLabel.setBounds(420,55,270,30);
 
         //************** View Receiver Information ****************
 
@@ -36,7 +36,7 @@ public class DonorViewReceiverRunner extends JPanel {
 
         // Add the table to a scroll pane
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setBounds(350,100,400,300);
+        scrollPane.setBounds(320,100,460,300);
 //        setLayout(new FlowLayout(FlowLayout.LEADING));
         add(scrollPane);
     }

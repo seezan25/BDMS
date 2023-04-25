@@ -13,7 +13,7 @@ public class AdminDonationRequest extends JPanel {
         setLayout(null);
 
         //************** Center Label ****************
-        JLabel centerLabel= new JLabel("Donation Request");
+        JLabel centerLabel= new JLabel("Donar Information");
         centerLabel.setForeground(Color.WHITE);
         centerLabel.setFont(new Font("",Font.BOLD,25));
         centerLabel.setBounds(440,55,270,30);
@@ -32,10 +32,9 @@ public class AdminDonationRequest extends JPanel {
 
         // Add the table to a scroll pane
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setBounds(350,100,400,300);
+        scrollPane.setBounds(350,100,440,300);
 //        setLayout(new FlowLayout(FlowLayout.LEADING));
         add(scrollPane);
-
     }
     public DefaultTableModel getTableModel(){
         return model;
