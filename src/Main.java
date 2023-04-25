@@ -138,137 +138,15 @@ public class Main {
         Connection conn = connect.getConnection();
 
 
-        //importing from donationRequest
-        DefaultTableModel tableModelAdminDonationRequest = adminDonationRequest.getTableModel();
-        JTable tableDonationRequest = adminDonationRequest.getTable();
-        try {
-            String sqlDonationRequest = "SELECT * FROM donor";
-            Statement statementDonationRequest = conn.createStatement();
-            ResultSet resultDonationRequest = statementDonationRequest.executeQuery(sqlDonationRequest);
-            while (resultDonationRequest.next()) {
-                String username = resultDonationRequest.getString("username");
-                String email = resultDonationRequest.getString("Email");
-                String bloodGroup = resultDonationRequest.getString("BloodGroup");
-                String contact = resultDonationRequest.getString("Contact");
-                String address = resultDonationRequest.getString("Address");
-                String[] dataOfReceiver = {username, email, bloodGroup, contact, address};
-                tableModelAdminDonationRequest.addRow(dataOfReceiver);
-            }
-            resultDonationRequest.close();
-            statementDonationRequest.close();
-        } catch (SQLException error) {
-            throw new RuntimeException(error);
-        }
 
-        //importing from the blood request
-        DefaultTableModel tableModelAdminBloodRequest = adminBloodRequest.getTableModel();
-        JTable tableBloodRequest = adminBloodRequest.getTable();
-        try {
-            String sqlBloodRequest = "SELECT * FROM receiver";
-            Statement statementBloodRequest = conn.createStatement();
-            ResultSet resultBloodRequest = statementBloodRequest.executeQuery(sqlBloodRequest);
-            while (resultBloodRequest.next()) {
-                String username = resultBloodRequest.getString("username");
-                String email = resultBloodRequest.getString("Email");
-                String bloodGroup = resultBloodRequest.getString("BloodGroup");
-                String contact = resultBloodRequest.getString("Contact");
-                String address = resultBloodRequest.getString("Address");
-                String[] dataOfReceiver = {username, email, bloodGroup, contact, address};
-                tableModelAdminBloodRequest.addRow(dataOfReceiver);
-            }
-            resultBloodRequest.close();
-            statementBloodRequest.close();
-        } catch (SQLException error) {
-            throw new RuntimeException(error);
-        }
 
-        //importing from the Donor View Receiver
-        DefaultTableModel tableModelDonorViewReceiver = donorViewReceiver.getTableModel();
-        JTable tableDonorViewReceiver = donorViewReceiver.getTable();
-        try {
-            String sqlDonorViewReceiver = "SELECT * FROM receiver";
-            Statement statementDonorViewReceiver = conn.createStatement();
-            ResultSet resultDonorViewReceiver = statementDonorViewReceiver.executeQuery(sqlDonorViewReceiver);
-            while (resultDonorViewReceiver.next()) {
-                String username = resultDonorViewReceiver.getString("username");
-                String email = resultDonorViewReceiver.getString("Email");
-                String bloodGroup = resultDonorViewReceiver.getString("BloodGroup");
-                String contact = resultDonorViewReceiver.getString("Contact");
-                String address = resultDonorViewReceiver.getString("Address");
-                String[] dataOfReceiver = {username, email, bloodGroup, contact, address};
-                tableModelDonorViewReceiver.addRow(dataOfReceiver);
-            }
-            resultDonorViewReceiver.close();
-            statementDonorViewReceiver.close();
-        } catch (SQLException error) {
-            throw new RuntimeException(error);
-        }
 
-        //importing from the Donor View Donor
-        DefaultTableModel tableModelDonorViewDonor = donorViewReceiver.getTableModel();
-        JTable tableDonorViewDonor = donorViewReceiver.getTable();
-        try {
-            String sqlDonorViewDonor = "SELECT * FROM receiver";
-            Statement statementDonorViewDonor = conn.createStatement();
-            ResultSet resultDonorViewDonor = statementDonorViewDonor.executeQuery(sqlDonorViewDonor);
-            while (resultDonorViewDonor.next()) {
-                String username = resultDonorViewDonor.getString("username");
-                String email = resultDonorViewDonor.getString("Email");
-                String bloodGroup = resultDonorViewDonor.getString("BloodGroup");
-                String contact = resultDonorViewDonor.getString("Contact");
-                String address = resultDonorViewDonor.getString("Address");
-                String[] dataOfReceiver = {username, email, bloodGroup, contact, address};
-                tableModelDonorViewDonor.addRow(dataOfReceiver);
-            }
-            resultDonorViewDonor.close();
-            statementDonorViewDonor.close();
-        } catch (SQLException error) {
-            throw new RuntimeException(error);
-        }
 
-        //importing from the Receiver View Receiver
-        DefaultTableModel tableModelReceiverViewReceiver = receiverViewReceiver.getTableModel();
-        JTable tableReceiverViewReceiver = receiverViewReceiver.getTable();
-        try {
-            String sqlReceiverViewReceiver = "SELECT * FROM receiver";
-            Statement statementReceiverViewReceiver = conn.createStatement();
-            ResultSet resultReceiverViewReceiver = statementReceiverViewReceiver.executeQuery(sqlReceiverViewReceiver);
-            while (resultReceiverViewReceiver.next()) {
-                String username = resultReceiverViewReceiver.getString("username");
-                String email = resultReceiverViewReceiver.getString("Email");
-                String bloodGroup = resultReceiverViewReceiver.getString("BloodGroup");
-                String contact = resultReceiverViewReceiver.getString("Contact");
-                String address = resultReceiverViewReceiver.getString("Address");
-                String[] dataOfReceiver = {username, email, bloodGroup, contact, address};
-                tableModelReceiverViewReceiver.addRow(dataOfReceiver);
-            }
-            resultReceiverViewReceiver.close();
-            statementReceiverViewReceiver.close();
-        } catch (SQLException error) {
-            throw new RuntimeException(error);
-        }
 
-        //importing from the Receiver View Donor
-        DefaultTableModel tableModelReceiverViewDonor = receiverViewReceiver.getTableModel();
-        JTable tableReceiverViewDonor = receiverViewReceiver.getTable();
-        try {
-            String sqlReceiverViewDonor = "SELECT * FROM receiver";
-            Statement statementReceiverViewDonor = conn.createStatement();
-            ResultSet resultReceiverViewDonor = statementReceiverViewDonor.executeQuery(sqlReceiverViewDonor);
-            while (resultReceiverViewDonor.next()) {
-                String username = resultReceiverViewDonor.getString("username");
-                String email = resultReceiverViewDonor.getString("Email");
-                String bloodGroup = resultReceiverViewDonor.getString("BloodGroup");
-                String contact = resultReceiverViewDonor.getString("Contact");
-                String address = resultReceiverViewDonor.getString("Address");
-                String[] dataOfReceiver = {username, email, bloodGroup, contact, address};
-                tableModelReceiverViewDonor.addRow(dataOfReceiver);
-            }
-            resultReceiverViewDonor.close();
-            statementReceiverViewDonor.close();
-        } catch (SQLException error) {
-            throw new RuntimeException(error);
-        }
+
+
+
+
 
 
         //While Clicking on Login Button
@@ -574,6 +452,32 @@ public class Main {
         clickBloodRequest.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                //importing from the blood request
+                DefaultTableModel tableModelAdminBloodRequest = adminBloodRequest.getTableModel();
+                JTable tableBloodRequest = adminBloodRequest.getTable();
+                try {
+                    while(tableModelAdminBloodRequest.getRowCount()>0){
+                        tableModelAdminBloodRequest.removeRow(0);
+                    }
+                    String sqlBloodRequest = "SELECT * FROM receiver";
+                    Statement statementBloodRequest = conn.createStatement();
+                    ResultSet resultBloodRequest = statementBloodRequest.executeQuery(sqlBloodRequest);
+                    while (resultBloodRequest.next()) {
+                        String username = resultBloodRequest.getString("username");
+                        String email = resultBloodRequest.getString("Email");
+                        String bloodGroup = resultBloodRequest.getString("BloodGroup");
+                        String contact = resultBloodRequest.getString("Contact");
+                        String address = resultBloodRequest.getString("Address");
+                        String[] dataOfReceiver = {username, email, bloodGroup, contact, address};
+                        tableModelAdminBloodRequest.addRow(dataOfReceiver);
+                    }
+                    resultBloodRequest.close();
+                    statementBloodRequest.close();
+                } catch (SQLException error) {
+                    throw new RuntimeException(error);
+                }
+
+
                 frame.getContentPane().removeAll();
                 frame.getContentPane().add(adminNavbar);
                 frame.getContentPane().add(top);
@@ -585,6 +489,30 @@ public class Main {
         clickDonationRequest.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                //importing from donationRequest
+                DefaultTableModel tableModelAdminDonationRequest = adminDonationRequest.getTableModel();
+                JTable tableDonationRequest = adminDonationRequest.getTable();
+                try {
+                    while(tableModelAdminDonationRequest.getRowCount()>0){
+                        tableModelAdminDonationRequest.removeRow(0);
+                    }
+                    String sqlDonationRequest = "SELECT * FROM donor";
+                    Statement statementDonationRequest = conn.createStatement();
+                    ResultSet resultDonationRequest = statementDonationRequest.executeQuery(sqlDonationRequest);
+                    while (resultDonationRequest.next()) {
+                        String username = resultDonationRequest.getString("username");
+                        String email = resultDonationRequest.getString("Email");
+                        String bloodGroup = resultDonationRequest.getString("BloodGroup");
+                        String contact = resultDonationRequest.getString("Contact");
+                        String address = resultDonationRequest.getString("Address");
+                        String[] dataOfReceiver = {username, email, bloodGroup, contact, address};
+                        tableModelAdminDonationRequest.addRow(dataOfReceiver);
+                    }
+                    resultDonationRequest.close();
+                    statementDonationRequest.close();
+                } catch (SQLException error) {
+                    throw new RuntimeException(error);
+                }
                 frame.getContentPane().removeAll();
                 frame.getContentPane().add(adminNavbar);
                 frame.getContentPane().add(top);
@@ -710,6 +638,31 @@ public class Main {
         clickViewDonor.addMouseListener(new MouseAdapter() {
                                             @Override
                                             public void mouseClicked(MouseEvent e) {
+                                                //importing from the Donor View Donor
+                                                DefaultTableModel tableModelDonorViewDonor = donorViewReceiver.getTableModel();
+                                                JTable tableDonorViewDonor = donorViewReceiver.getTable();
+                                                try {
+                                                    while(tableModelDonorViewDonor.getRowCount()>0){
+                                                        tableModelDonorViewDonor.removeRow(0);
+                                                    }
+                                                    String sqlDonorViewDonor = "SELECT * FROM receiver";
+                                                    Statement statementDonorViewDonor = conn.createStatement();
+                                                    ResultSet resultDonorViewDonor = statementDonorViewDonor.executeQuery(sqlDonorViewDonor);
+                                                    while (resultDonorViewDonor.next()) {
+                                                        String username = resultDonorViewDonor.getString("username");
+                                                        String email = resultDonorViewDonor.getString("Email");
+                                                        String bloodGroup = resultDonorViewDonor.getString("BloodGroup");
+                                                        String contact = resultDonorViewDonor.getString("Contact");
+                                                        String address = resultDonorViewDonor.getString("Address");
+                                                        String[] dataOfReceiver = {username, email, bloodGroup, contact, address};
+                                                        tableModelDonorViewDonor.addRow(dataOfReceiver);
+                                                    }
+                                                    resultDonorViewDonor.close();
+                                                    statementDonorViewDonor.close();
+                                                } catch (SQLException error) {
+                                                    throw new RuntimeException(error);
+                                                }
+
                                                 frame.getContentPane().removeAll();
                                                 frame.getContentPane().add(donorNavbar);
                                                 frame.getContentPane().add(top);
@@ -722,6 +675,30 @@ public class Main {
         clickViewReceiver.addMouseListener(new MouseAdapter() {
                                                @Override
                                                public void mouseClicked(MouseEvent e) {
+                                                   //importing from the Donor View Receiver
+                                                   DefaultTableModel tableModelDonorViewReceiver = donorViewReceiver.getTableModel();
+                                                   JTable tableDonorViewReceiver = donorViewReceiver.getTable();
+                                                   try {
+                                                       while(tableModelDonorViewReceiver.getRowCount()>0){
+                                                           tableModelDonorViewReceiver.removeRow(0);
+                                                       }
+                                                       String sqlDonorViewReceiver = "SELECT * FROM receiver";
+                                                       Statement statementDonorViewReceiver = conn.createStatement();
+                                                       ResultSet resultDonorViewReceiver = statementDonorViewReceiver.executeQuery(sqlDonorViewReceiver);
+                                                       while (resultDonorViewReceiver.next()) {
+                                                           String username = resultDonorViewReceiver.getString("username");
+                                                           String email = resultDonorViewReceiver.getString("Email");
+                                                           String bloodGroup = resultDonorViewReceiver.getString("BloodGroup");
+                                                           String contact = resultDonorViewReceiver.getString("Contact");
+                                                           String address = resultDonorViewReceiver.getString("Address");
+                                                           String[] dataOfReceiver = {username, email, bloodGroup, contact, address};
+                                                           tableModelDonorViewReceiver.addRow(dataOfReceiver);
+                                                       }
+                                                       resultDonorViewReceiver.close();
+                                                       statementDonorViewReceiver.close();
+                                                   } catch (SQLException error) {
+                                                       throw new RuntimeException(error);
+                                                   }
                                                    frame.getContentPane().removeAll();
                                                    frame.getContentPane().add(donorNavbar);
                                                    frame.getContentPane().add(top);
@@ -747,6 +724,7 @@ public class Main {
         clickYourDetailsReceiver.addMouseListener(new MouseAdapter() {
                                               @Override
                                               public void mouseClicked(MouseEvent e) {
+
                                                   frame.getContentPane().removeAll();
                                                   frame.getContentPane().add(receiverNavbar);
                                                   frame.getContentPane().add(top);
@@ -759,6 +737,30 @@ public class Main {
         clickViewReceiverReceiver.addMouseListener(new MouseAdapter() {
                                             @Override
                                             public void mouseClicked(MouseEvent e) {
+                                                //importing from the Receiver View Receiver
+                                                DefaultTableModel tableModelReceiverViewReceiver = receiverViewReceiver.getTableModel();
+                                                JTable tableReceiverViewReceiver = receiverViewReceiver.getTable();
+                                                try {
+                                                    while(tableModelReceiverViewReceiver.getRowCount()>0){
+                                                        tableModelReceiverViewReceiver.removeRow(0);
+                                                    }
+                                                    String sqlReceiverViewReceiver = "SELECT * FROM receiver";
+                                                    Statement statementReceiverViewReceiver = conn.createStatement();
+                                                    ResultSet resultReceiverViewReceiver = statementReceiverViewReceiver.executeQuery(sqlReceiverViewReceiver);
+                                                    while (resultReceiverViewReceiver.next()) {
+                                                        String username = resultReceiverViewReceiver.getString("username");
+                                                        String email = resultReceiverViewReceiver.getString("Email");
+                                                        String bloodGroup = resultReceiverViewReceiver.getString("BloodGroup");
+                                                        String contact = resultReceiverViewReceiver.getString("Contact");
+                                                        String address = resultReceiverViewReceiver.getString("Address");
+                                                        String[] dataOfReceiver = {username, email, bloodGroup, contact, address};
+                                                        tableModelReceiverViewReceiver.addRow(dataOfReceiver);
+                                                    }
+                                                    resultReceiverViewReceiver.close();
+                                                    statementReceiverViewReceiver.close();
+                                                } catch (SQLException error) {
+                                                    throw new RuntimeException(error);
+                                                }
                                                 frame.getContentPane().removeAll();
                                                 frame.getContentPane().add(receiverNavbar);
                                                 frame.getContentPane().add(top);
@@ -771,6 +773,30 @@ public class Main {
         clickViewDonorReceiver.addMouseListener(new MouseAdapter() {
                                                @Override
                                                public void mouseClicked(MouseEvent e) {
+                                                   //importing from the Receiver View Donor
+                                                   DefaultTableModel tableModelReceiverViewDonor = receiverViewReceiver.getTableModel();
+                                                   JTable tableReceiverViewDonor = receiverViewReceiver.getTable();
+                                                   try {
+                                                       while(tableModelReceiverViewDonor.getRowCount()>0){
+                                                           tableModelReceiverViewDonor.removeRow(0);
+                                                       }
+                                                       String sqlReceiverViewDonor = "SELECT * FROM receiver";
+                                                       Statement statementReceiverViewDonor = conn.createStatement();
+                                                       ResultSet resultReceiverViewDonor = statementReceiverViewDonor.executeQuery(sqlReceiverViewDonor);
+                                                       while (resultReceiverViewDonor.next()) {
+                                                           String username = resultReceiverViewDonor.getString("username");
+                                                           String email = resultReceiverViewDonor.getString("Email");
+                                                           String bloodGroup = resultReceiverViewDonor.getString("BloodGroup");
+                                                           String contact = resultReceiverViewDonor.getString("Contact");
+                                                           String address = resultReceiverViewDonor.getString("Address");
+                                                           String[] dataOfReceiver = {username, email, bloodGroup, contact, address};
+                                                           tableModelReceiverViewDonor.addRow(dataOfReceiver);
+                                                       }
+                                                       resultReceiverViewDonor.close();
+                                                       statementReceiverViewDonor.close();
+                                                   } catch (SQLException error) {
+                                                       throw new RuntimeException(error);
+                                                   }
                                                    frame.getContentPane().removeAll();
                                                    frame.getContentPane().add(receiverNavbar);
                                                    frame.getContentPane().add(top);
